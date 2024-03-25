@@ -102,6 +102,7 @@ const creatorname=localStorage.getItem('creatorname')
               placeholder="Title"
               onChange={creatorPodcastChange}
               name="podcastname"
+              required
             ></input>
             <label className="Creator_Name_label" for="">
               Description
@@ -113,6 +114,7 @@ const creatorname=localStorage.getItem('creatorname')
               rows={4}
               cols={40}
               onChange={creatorPodcastChange}
+              required
             />
            
           </div>
@@ -127,6 +129,7 @@ const creatorname=localStorage.getItem('creatorname')
            placeholder="price"
            onChange={creatorPodcastChange}
            name="price"
+           required
          ></input>
 
             <label className="Creator_Name_label" for="">
@@ -139,6 +142,7 @@ const creatorname=localStorage.getItem('creatorname')
               placeholder=""
               name="image"
               onChange={creatorPodcastChange}
+              required
             ></input>
         
           
@@ -152,6 +156,7 @@ const creatorname=localStorage.getItem('creatorname')
               placeholder=""
               name="audio"
               onChange={creatorPodcastChange}
+              required
             ></input>
           </div>
         </div>
