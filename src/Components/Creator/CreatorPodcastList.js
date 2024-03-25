@@ -38,7 +38,7 @@ function CreatorPodcastList({ data }) {
   return (
     <div className="podcast_list_main">
       <div class="container ">
-      <h5 className="text-dark">My podcasts</h5>
+      <h5 className="text-dark mt- pt-5">My podcasts</h5>
         <div class="row">
           {creatorpodcast.length ? (
             creatorpodcast.map((a) => {
@@ -58,9 +58,9 @@ function CreatorPodcastList({ data }) {
                     <h6 class="card-text">{a.description}</h6>
                     <h6 class="card-text">{a.price}</h6>
                     {data.role === 'creator' ? '' : <button onClick={()=>gotoPayment(a._id)} >Subscribe</button>}
-                    {data.role === 'creator'?<button onClick={()=>gotoEpisode(a._id + ',' + a.podcastname)} className="episodebtn">Go to Episode
+                    {data.role === 'creator'?<div className="text-center m-3"><button onClick={()=>gotoEpisode(a._id + ',' + a.podcastname)} className="episodebtn">Go to Episode
                       <FaPlus  />
-                    </button>:""}
+                    </button></div>:""}
                     <div>
                   <audio controls className="w-100">
                     <source src={a.audio ? data.url + a.audio.filename : ''} type="audio/mpeg" />
