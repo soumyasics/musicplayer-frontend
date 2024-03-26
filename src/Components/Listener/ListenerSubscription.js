@@ -1,17 +1,17 @@
-import React,{useEffect,useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import axiosInstance from "../../Baseurl";
 import { FaPlus } from "react-icons/fa6";
 
 function ListenerSubscription({ data }) {
-  const navigate=useNavigate()
+  const navigate = useNavigate()
 
   useEffect(() => {
     if (localStorage.getItem("listenerid") == null) {
       navigate("/");
-    } 
+    }
   }, []);
-    const [creatorpodcast, setCreatorpodcast] = useState([]);
+  const [creatorpodcast, setCreatorpodcast] = useState([]);
   useEffect(() => {
     axiosInstance
       .post("/viewSubscriptionByListenerId", {
@@ -27,51 +27,55 @@ function ListenerSubscription({ data }) {
     console.log(creatorpodcast, "ll");
   }, []);
 
-  const handleSubscribe=()=>{
+  const handleSubscribe = () => {
 
+  }
+
+  const handleViewEpisode = (id) => {
+    
   }
 
   return (
     <div>
-        <div className="podcast_list_main">
-      <div class="container ">
-      <h5 className="text-dark">Trending Chanels</h5>
-        <div class="row">
-          {creatorpodcast.length ? (
-            creatorpodcast.map((a) => {
-              return (
-                <div  className="card col-3" id="podcastlist_card">
-                  <div class="podcastlist_card_img">
-                    <img
-                    src={data.url + a.podcastid.coverimage.filename}
-                    class="card-img-top"
-                      id="adminclub"
-                      alt="..."
-                    />
+      <div className="podcast_list_main">
+        <div class="container ">
+          <h5 className="text-dark"> podcasts</h5>
+          <div class="row">
+            {creatorpodcast.length ? (
+              creatorpodcast.map((a) => {
+                return (
+                  <div className="card col-3" id="podcastlist_card">
+                    <div class="podcastlist_card_img">
+                      <img
+                        src={data.url + a.podcastid.coverimage.filename}
+                        class="card-img-top"
+                        id="adminclub"
+                        alt="..."
+                      />
+                    </div>
+                    <div class="podcastlist_card_content">
+                      <h4 class="card-title mt-3 mb-2t">{a.podcastid.podcastname}</h4>
+                      <h6 class="card-text col">{a.podcastid.creatorname}</h6>
+                      <h6 class="card-text">{a.podcastid.description}</h6>
+                      <audio controls className="w-100">
+                        <source src={a.podcastid.audio ? data.url + a.podcastid.audio.filename : ''} type="audio/mpeg" />
+                        Your browser does not support the audio element.
+                      </audio>
+                      {data.role === 'listener' ? <div className='text-center'><button onClick={() => { handleViewEpisode(a.podcastid + ',' + a.podcastname) }} >view episodes</button></div> : <button onClick={() => handleSubscribe(a._id + ',' + a.podcastname)}>Subscribe</button>}
+                    </div>
                   </div>
-                  <div class="podcastlist_card_content">
-                    <h4 class="card-title mt-3 mb-2t">{a.podcastid.podcastname}</h4>
-                    <h6 class="card-text col">{a.podcastid.creatorname}</h6>
-                    <h6 class="card-text">{a.podcastid.description}</h6>
-                    <audio controls className="w-100">
-                    <source src={a.podcastid.audio ? data.url + a.podcastid.audio.filename : ''} type="audio/mpeg" />
-                    Your browser does not support the audio element.
-                  </audio>
-                    {data.role === 'listener' ? <div className='text-center'><button >view episodes</button></div> : <button  onClick={()=>handleSubscribe(a._id + ',' + a.podcastname)}>Subscribe</button>}
-                  </div>
-                </div>
-              );
-            })
-          ) : (
-            <div className="no_data">
-              <h1>No podcast found</h1>
-            </div>
-          )}
+                );
+              })
+            ) : (
+              <div className="no_data">
+                <h1>No podcast found</h1>
+              </div>
+            )}
+          </div>
         </div>
       </div>
-    </div>
 
-      
+
     </div>
   )
 }
