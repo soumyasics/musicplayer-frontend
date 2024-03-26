@@ -75,7 +75,7 @@ function CreatorEditEpisode() {
         <div className='container mt-5'>
                     <div className="podcast_upload">
       <div className="container">
-        <h5 className="text-center mb-5">Add Episodes</h5>
+        <h5 className="text-center mb-5">Edit Episodes</h5>
         <div className="row">
           <div className="col">
             <label className="Creator_Name_label" for="">

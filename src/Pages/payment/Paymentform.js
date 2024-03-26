@@ -13,18 +13,15 @@ function Paymentform() {
   const [expirationDate, setExpirationDate] = useState("");
   const [CVV, setCVV] = useState("");
 
-  const [creditcard,setCredictcard]=useState({
-    no:123456789012,
-    cvv:111,
-    date:"2024-01",
-    name:"ajeena"
-  })
+
+  const enteredDateObj = new Date(expirationDate);
+  const currentDate = new Date();
   
   const { id } = useParams();
   const navigate = useNavigate();
 
   const handlePayment=async()=>{
-    if(cardholdername==creditcard.name && creaditcardnumber==creditcard.no && expirationDate==creditcard.date && CVV==creditcard.cvv){
+    if(cardholdername.length > 3 && creaditcardnumber.length == 12 &&  enteredDateObj > currentDate && CVV.length == 3){
         console.log("nbchdbv");
     
     try {

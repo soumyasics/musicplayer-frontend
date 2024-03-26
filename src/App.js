@@ -36,6 +36,7 @@ import SbscriptionList from "./Pages/Admin/SbscriptionList";
 import CreatorEpisodes from "./Components/Creator/CreatorEpisodes";
 import CreatorEditEpisode from "./Components/Creator/CreatorEditEpisode";
 import WishlistList from "./Components/Listener/WishlistList";
+import Subscriptions from "./Components/Listener/Subscriptions";
 
 function App() {
 
@@ -79,16 +80,16 @@ function App() {
 
         <Route path="/adminhome" element={<AdminLandingPage />} />
         <Route path="/adminlogin" element={<AdminLogin />} />
-        <Route path="/admindashboard" element={<AdminDashboard />} />
-        <Route path="/admindashboard" element={<AdminDashboard />} />
+        <Route path="/admindashboard" element={[<AdminDashboard />,<ListenerList/>,<Footer/>]} />
         <Route path="/paymentform/:id" element={<Paymentform />} />
         <Route path="/listenerlist" element={<ListenerList />} />
         <Route path="/creatorlist" element={<CreatorList />} />
         <Route path="/podcastlist" element={<PodcastList />} />
         <Route path="/subscriptionList" element={<SbscriptionList />} />
-        <Route path="/creatorepisodes/:id" element={<CreatorEpisodes />} />
-        <Route path="/creatoreditepisode/:id" element={<CreatorEditEpisode />} />
+        <Route path="/creatorepisodes/:id" element={[<CreatorNavbar url={url}/>,<CreatorEpisodes url={url}  />,<Footer/>]} />
+        <Route path="/creatoreditepisode/:id" element={[<CreatorNavbar url={url}/>,<CreatorEditEpisode />,<Footer/>]} />
         <Route path="/wishlist" element={<WishlistList />} />
+        <Route path="/subscription" element={[<CreatorNavbar url={url}/>,<Subscriptions url={url} />,<Footer/>]} />
       </Routes>
     </BrowserRouter>
   );
