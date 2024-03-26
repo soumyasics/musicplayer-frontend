@@ -6,11 +6,11 @@ import axiosInstance from '../../Baseurl';
 
 function PodcastList() {
 
-    const [podcastlist, setPodcastList] = useState([])
+    const [podcastlist, setPodcastList] = useState([]);
 
     useEffect(() => {
         axiosInstance
-            .post("/viewsubscriptions")
+            .post("/getAllPodcast")
             .then((response) => {
                 setPodcastList(response.data.data);
                 console.log(response.data.data);

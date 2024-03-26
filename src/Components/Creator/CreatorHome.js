@@ -38,7 +38,6 @@ function CreatorHome() {
           and transform your curiosity into wisdom !"
         </p>
         <div className="mt-5">
-          <button className="seelatestpodcast ">Demo <FaPlus/></button>
           <button  className="btn border border-dark rounded-pill px-5 ms-3">
             Subscribers
           </button>

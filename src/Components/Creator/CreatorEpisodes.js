@@ -1,9 +1,43 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Card from "react-bootstrap/Card";
 import { useNavigate } from "react-router-dom";
+import axiosInstance from '../../Baseurl';
+import { useParams } from 'react-router-dom';
+
 
 function CreatorEpisodes() {
     const navigate = useNavigate();
+    const [podcast, setPodcast] = useState([]);
+    const [podcastId, setPodcastId] = useState([]);
+    const [episodes, setEpisodes] = useState([]);
+    let { id } = useParams();
+
+    useEffect(() => {
+        console.log(id)
+        axiosInstance
+            .post("/getPodcastByPodcastId",{
+                id: id.split(',')[0]
+            })
+            .then((response) => {
+                setPodcast(response.data.data);
+                console.log(response);
+            })
+            .catch((error) => {
+                console.log("Error submitting data: ", error);
+            });
+
+            axiosInstance
+            .post("/getEpisodedOfPodcast",{
+                id: id.split(',')[0]
+            })
+            .then((response) => {
+                console.log('episode', response.data.data);
+                setEpisodes(response.data.data);
+            })
+            .catch((error) => {
+                console.log("Error submitting data: ", error);
+            });
+    }, []);
 
     return (
         <div className='container mt-5'>

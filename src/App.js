@@ -36,6 +36,7 @@ import SbscriptionList from "./Pages/Admin/SbscriptionList";
 import CreatorEpisodes from "./Components/Creator/CreatorEpisodes";
 import CreatorEditEpisode from "./Components/Creator/CreatorEditEpisode";
 import WishlistList from "./Components/Listener/WishlistList";
+import Subscriptions from "./Components/Listener/Subscriptions";
 
 function App() {
 
@@ -88,6 +89,7 @@ function App() {
         <Route path="/creatorepisodes/:id" element={<CreatorEpisodes />} />
         <Route path="/creatoreditepisode/:id" element={<CreatorEditEpisode />} />
         <Route path="/wishlist" element={<WishlistList />} />
+        <Route path="/subscription" element={<Subscriptions />} />
       </Routes>
     </BrowserRouter>
   );
