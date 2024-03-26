@@ -5,29 +5,29 @@ import axiosInstance from '../../Baseurl';
 import { useParams } from 'react-router-dom';
 
 
-function CreatorEpisodes() {
+function CreatorEpisodes({ url }) {
     const navigate = useNavigate();
     const [podcast, setPodcast] = useState([]);
-    const [podcastId, setPodcastId] = useState([]);
+    // const [podcastId, setPodcastId] = useState([]);
     const [episodes, setEpisodes] = useState([]);
     let { id } = useParams();
 
     useEffect(() => {
         console.log(id)
         axiosInstance
-            .post("/getPodcastByPodcastId",{
+            .post("/getPodcastByPodcastId", {
                 id: id.split(',')[0]
             })
             .then((response) => {
                 setPodcast(response.data.data);
-                console.log(response);
+                console.log(response.data.data);
             })
             .catch((error) => {
                 console.log("Error submitting data: ", error);
             });
 
-            axiosInstance
-            .post("/getEpisodedOfPodcast",{
+        axiosInstance
+            .post("/getEpisodedOfPodcast", {
                 id: id.split(',')[0]
             })
             .then((response) => {
@@ -39,49 +39,67 @@ function CreatorEpisodes() {
             });
     }, []);
 
+    const AddEpisode = (id) => {
+        navigate(`/creatorepisodadd/${id}`)
+    }
+
+    const handleEpisodeEdit = (id) => {
+        navigate(`/creatoreditepisode/${id}`)
+    }
     return (
         <div className='container mt-5'>
             <div className='row'>
-                <div className='col-6'> <Card className='row' style={{
-                    width: "100%", height: "200px",
-                    boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px"
-                }}>
-                    <Card className='col-2' style={{
-                        width: "18rem", height: "100px", margin: "8px",
-                        boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
-                    }}></Card>
-                    <div className='col-4'>cgfhghj</div>
-                </Card></div>
+                <div className='col-5'>
+                    {podcast.map((item) => (
+                        <Card className='row' style={{
+                            width: "100%", height: "fit-content",
+                            boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px"
+                        }}><div>
+                                <img style={{ width: "100%", height: "300px", boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px", margin: "0px" }}
+                                    src={url + item.coverimage.filename}
+                                    alt="img"
+                                    className="listenerprofileimg"
+                                ></img></div>
+
+                            <div className='col-6 p-4'><h3>{item.podcastname}</h3>
+
+                                <div style={{ width: "100%" }}>
+                                    <audio controls >
+                                        <source src={item.audio ? url + item.audio.filename : ''} type="audio/mpeg" />
+                                        Your browser does not support the audio element.
+                                    </audio></div>
+                                <div className='text-center'><h6 class="card-text col">{item.creatorname}</h6>
+                                    <h6>Discription {item.description}</h6>
+                                    <button onClick={() => AddEpisode(item._id)}>Add Episode</button>
+                                </div>
+
+                            </div>
+                        </Card>
+                    ))}</div>
                 <div className='col-6 '>
-                    <div className='col-2 p-2' style={{
+                    <div className='col-6 p-2' style={{
                         width: "100%", height: "fit-content", margin: "8px",
                         boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
-                    }}>
-                        <Card className='col-2 m-3 mt-3' style={{
-                            width: "95%", height: "100px", padding: "8px",
-                        }}></Card><Card className='col-2 m-3 mt-3' style={{
-                            width: "95%", height: "100px", padding: "8px",
-                        }}></Card><Card className='col-2 m-3 mt-3' style={{
-                            width: "95%", height: "100px", padding: "8px",
-                        }}></Card><Card className='col-2 m-3 mt-3' style={{
-                            width: "95%", height: "100px", padding: "8px",
-                        }}></Card><Card className='col-2 m-3 mt-3' style={{
-                            width: "95%", height: "100px", padding: "8px",
-                        }}></Card><Card className='col-2 m-3 mt-3' style={{
-                            width: "95%", height: "100px", padding: "8px",
-                        }}></Card><Card className='col-2 m-3 mt-3' style={{
-                            width: "95%", height: "100px", padding: "8px",
-                        }}></Card><Card className='col-2 m-3 mt-3' style={{
-                            width: "95%", height: "100px", padding: "8px",
-                        }}></Card><Card className='col-2 m-3 mt-3' style={{
-                            width: "95%", height: "100px", padding: "8px",
-                        }}></Card><Card className='col-2 m-3 mt-3' style={{
-                            width: "95%", height: "100px", padding: "8px",
-                        }}></Card><Card className='col-2 m-3 mt-3' style={{
-                            width: "95%", height: "100px", padding: "8px",
-                        }}></Card><Card className='col-2 m-3 mt-3' style={{
-                            width: "95%", height: "100px", padding: "8px",
-                        }}></Card>
+                    }}>{episodes.map((item) => (
+
+                        <Card className='col-6 m-3 mt-3' style={{
+                            width: "95%", height: "fit-content", padding: "8px",
+                        }}><p>{item.episodetitle}</p>
+                            <div class="row">
+                                <div className='col-3'>
+                                    <p>Episode {item.episodecount}</p>
+                                    <button onClick={() => handleEpisodeEdit(item._id)}>Edit Episode</button>
+                                </div>
+
+                                <div className='col-6' >
+                                    <audio controls style={{ width: "150%" }}>
+                                        <source src={item.audio ? url + item.audio.filename : ''} type="audio/mpeg" />
+                                        Your browser does not support the audio element.
+                                    </audio></div>
+                            </div>
+                        </Card>
+
+                    ))}
 
                     </div></div>
             </div>

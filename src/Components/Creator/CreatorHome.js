@@ -2,7 +2,7 @@ import React,{useEffect} from 'react'
 import { Container } from 'react-bootstrap'
 import img from "../../Assest/Group 1.png";
 import LandingPage from '../../Pages/Listener/LandingPage'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { FaPlus } from "react-icons/fa6";
 
 function CreatorHome() {
@@ -39,7 +39,7 @@ function CreatorHome() {
         </p>
         <div className="mt-5">
           <button  className="btn border border-dark rounded-pill px-5 ms-3">
-            Subscribers
+           <Link to="/subscription" className='text-dark'> Subscribers</Link>
           </button>
         </div>
       </div>

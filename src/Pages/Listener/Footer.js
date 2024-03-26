@@ -23,7 +23,7 @@ function Footer() {
           </Col>
           <Col className="ms-5">
             <h6 className="footerhead">CONSUMER POLICY</h6>
-            <p>Toggleerms and conditons</p>
+            <p>Terms and conditons</p>
             <p>Complaints</p>
             <p>Privacy policy</p>
           </Col>

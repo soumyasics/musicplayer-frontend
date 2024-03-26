@@ -86,10 +86,10 @@ function App() {
         <Route path="/creatorlist" element={<CreatorList />} />
         <Route path="/podcastlist" element={<PodcastList />} />
         <Route path="/subscriptionList" element={<SbscriptionList />} />
-        <Route path="/creatorepisodes/:id" element={<CreatorEpisodes />} />
-        <Route path="/creatoreditepisode/:id" element={<CreatorEditEpisode />} />
+        <Route path="/creatorepisodes/:id" element={[<CreatorNavbar url={url}/>,<CreatorEpisodes url={url}  />,<Footer/>]} />
+        <Route path="/creatoreditepisode/:id" element={[<CreatorNavbar url={url}/>,<CreatorEditEpisode />,<Footer/>]} />
         <Route path="/wishlist" element={<WishlistList />} />
-        <Route path="/subscription" element={<Subscriptions />} />
+        <Route path="/subscription" element={[<CreatorNavbar url={url}/>,<Subscriptions url={url} />,<Footer/>]} />
       </Routes>
     </BrowserRouter>
   );

@@ -1,17 +1,17 @@
-import React,{useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useParams } from 'react-router-dom';
 import axiosInstance from "../../Baseurl";
 import './creator.css';
 
 function CreatorEpisodeAdd() {
-  const navigate=useNavigate()
+  const navigate = useNavigate()
   const { id } = useParams();
   var podcastInfo = id.split(',')
 
   const [episode, setEpisode] = useState({
     episodeTitle: "",
-    episodeCount : "",
+    episodeCount: "",
     podcastId: podcastInfo[0],
     file: ""
   });
@@ -41,15 +41,15 @@ function CreatorEpisodeAdd() {
     e.preventDefault();
     let data = new FormData();
     for (let key in episode) {
-      if( key != "file"){
+      if (key != "file") {
         data.append(key, episode[key]);
       }
     }
-    console.log(data.get('image'),"data");
-    data.append('creatorname',localStorage.getItem("creatorname") );
-    data.append('files',episode.file);
-    data.append('creatorId',localStorage.getItem('creatorid'));
-    
+    console.log(data.get('image'), "data");
+    data.append('creatorname', localStorage.getItem("creatorname"));
+    data.append('files', episode.file);
+    data.append('creatorId', localStorage.getItem('creatorid'));
+
     axiosInstance
       .post("/uploadepisode", data, {
         headers: {
@@ -59,15 +59,15 @@ function CreatorEpisodeAdd() {
       .then((response) => {
         console.log(response, "y");
         alert(response.data.msg);
-        navigate('/creatorprofile')
+        navigate(`/creatorepisodes/${id}`)
       })
       .catch((error) => {
         console.error("Error submitting data: ", error);
         alert("can't created")
       });
   }
-  const handleCancel=()=>{
-    navigate("/creatorprofile")
+  const handleCancel = () => {
+    navigate(`/creatorepisodes/${id}`)
   }
   return (
     <div className="podcast_upload">
@@ -75,7 +75,7 @@ function CreatorEpisodeAdd() {
         <h5 className="text-center mb-5">Add Episodes</h5>
         <div className="row">
           <div className="col">
-            <label className="Creator_Name_label" for="">
+            <label className="Creator_Name_label text-light" for="">
               Podcast Name
             </label>
             <input
@@ -91,9 +91,9 @@ function CreatorEpisodeAdd() {
               Episode Title
             </label>
             <input
-            required
+              required
               type="text"
-              class="form-control"
+              class="form-control text-light"
               id="Creator_Name"
               placeholder="Title"
               name="episodeTitle"
@@ -103,15 +103,15 @@ function CreatorEpisodeAdd() {
               Episode Count
             </label>
             <input
-            id="Creator_Name"
-              type="text"
-              class="form-control"
+              id="Creator_Name"
+              type="number"
+              class="form-control text-light"
               placeholder="Title"
               name="episodeCount"
               onChange={handleInputChnage}
               required
             ></input>
-            
+
           </div>
           <div className="col">
             <label className="Creator_Name_label" for="">
@@ -119,7 +119,7 @@ function CreatorEpisodeAdd() {
             </label>
             <input
               type="file"
-              class="form-control"
+              class="form-control text-light"
               id="audiofile"
               placeholder=""
               name="file"

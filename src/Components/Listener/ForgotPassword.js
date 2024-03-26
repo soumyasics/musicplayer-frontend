@@ -11,41 +11,6 @@ function ForgotPassword() {
 
   const navigate = useNavigate();
 
-//   useEffect(() => {
-//     if (localStorage.getItem("listenerid") !== null) {
-//       navigate("/forgotpassword");
-//     } else {
-//       navigate("/");
-//     }
-//   }, []);
-
-// const handlesubmit=(e)=>{
-//   e.preventDefault()
-//   if(!email){
-//     alert("please enter your mail id")
-//     return
-//   }
-//   const credentials={email}
-//   sendDataToServer(credentials,e);
-
-//   console.log(credentials);
-// }
-// const sendDataToServer = (credentials,e) => {
-//   e.preventDefault();
-//   axiosInstance.post(`/listenerforgotPassword`, credentials).then((res) => {
-//     console.log(credentials);
-
-//    console.log(res);
-//     if (res.data.status === 200) {
-//       // alert("Request send successful");
-//  navigate('/reader_forgotpswdsec')
-
-//     } else {
-//       alert("Sorry !! Some Internal Issues");
-//     }
-//   });
-
-// };
 const handleforgot=async(e)=>{
   e.preventDefault()
 
