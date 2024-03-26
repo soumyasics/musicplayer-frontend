@@ -82,14 +82,14 @@ function App() {
         <Route path="/adminlogin" element={<AdminLogin />} />
         <Route path="/admindashboard" element={[<AdminDashboard />,<ListenerList/>,<Footer/>]} />
         <Route path="/paymentform/:id" element={<Paymentform />} />
-        <Route path="/listenerlist" element={<ListenerList />} />
+        <Route path="/listenerlist" element={<ListenerList url={url} />} />
         <Route path="/creatorlist" element={<CreatorList />} />
         <Route path="/podcastlist" element={<PodcastList />} />
         <Route path="/subscriptionList" element={<SbscriptionList />} />
         <Route path="/creatorepisodes/:id" element={[<CreatorNavbar url={url}/>,<CreatorEpisodes url={url}  />,<Footer/>]} />
-        <Route path="/creatoreditepisode/:id" element={[<CreatorNavbar url={url}/>,<CreatorEditEpisode />,<Footer/>]} />
+        <Route path="/creatoreditepisode/:id" element={[<CreatorNavbar url={url}/>,<CreatorEditEpisode url={url}   />,<Footer/>]} />
         <Route path="/wishlist" element={<WishlistList />} />
-        <Route path="/subscription" element={[<CreatorNavbar url={url}/>,<Subscriptions url={url} />,<Footer/>]} />
+        <Route path="/subscription" element={[<CreatorNavbar url={url}/>,<Subscriptions url={url} />,<Footer/>]} />       
       </Routes>
     </BrowserRouter>
   );

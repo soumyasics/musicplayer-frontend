@@ -4,7 +4,7 @@ import Table from 'react-bootstrap/Table';
 import axiosInstance from '../../Baseurl';
 
 
-function ListenerList() {
+function ListenerList({ url }) {
 
     const [listenerlist, setListenerList] = useState([])
 
@@ -29,7 +29,7 @@ function ListenerList() {
                 margin: "8px", padding: "14px",
                 boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
             }}>
-                            <h2>Listeners List</h2>
+                <h2>Listeners List</h2>
 
                 <Table striped bordered hover>
                     <thead>
@@ -49,7 +49,13 @@ function ListenerList() {
                         listenerlist.map((item, index) => (
                             <tbody>
                                 <tr>
-                                    <td>{ }</td>
+                                    <td>                            <div>
+                                        <img style={{ width: "100%", height: "300px", boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px", margin: "0px" }}
+                                            src={url + item.image.originalname}
+                                            alt="img"
+                                            className="listenerprofileimg"
+                                        ></img></div>
+                                    </td>
                                     <td>{item.firstname}{item.lastname}</td>
                                     <td>{item.mobile}</td>
                                     <td>{item.email}</td>

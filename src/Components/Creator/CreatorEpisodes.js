@@ -54,7 +54,8 @@ function CreatorEpisodes({ url }) {
                         <Card className='row' style={{
                             width: "100%", height: "fit-content",
                             boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px"
-                        }}><div>
+                        }}>
+                            <div>
                                 <img style={{ width: "100%", height: "300px", boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px", margin: "0px" }}
                                     src={url + item.coverimage.filename}
                                     alt="img"
@@ -89,6 +90,7 @@ function CreatorEpisodes({ url }) {
                                 <div className='col-3'>
                                     <p>Episode {item.episodecount}</p>
                                     <button onClick={() => handleEpisodeEdit(item._id)}>Edit Episode</button>
+
                                 </div>
 
                                 <div className='col-6' >
