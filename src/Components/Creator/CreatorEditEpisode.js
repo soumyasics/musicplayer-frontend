@@ -1,12 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useParams } from 'react-router-dom';
+import { useParams } from "react-router-dom";
 import axiosInstance from "../../Baseurl";
 import Card from "react-bootstrap/Card";
 
-function CreatorEditEpisode({url}) {
-  const [episodeData, seEpisodedData] = useState({})
-  const episodid = useParams()
+function CreatorEditEpisode({ url }) {
+  const [episodeData, seEpisodedData] = useState({});
+
+  const {id} = useParams();
+  var episodid = {
+    id: id.split(',')[0],
+    name: id.split(',')[1]
+  }
   console.log(episodid.id, "episoid");
 
   useEffect(() => {
@@ -21,40 +26,30 @@ function CreatorEditEpisode({url}) {
       .catch((error) => {
         console.error("Error submitting data: ", error);
       });
-}, [episodid.id]); // Add episodid.id to the dependency array to trigger the effect when it changes
+  }, [episodid.id]); // Add episodid.id to the dependency array to trigger the effect when it changes
 
-
-  const navigate = useNavigate()
-  const { id } = useParams();
-  var podcastInfo = id.split(',')
+  const navigate = useNavigate();
+  // const { id } = useParams();
+  var podcastInfo = id.split(",");
 
   const [episode, setEpisode] = useState({
     episodeTitle: "",
     episodeCount: "",
     podcastId: podcastInfo[0],
-    file: ""
+    file: "",
   });
 
   const handleInputChnage = (e) => {
-    // console.log(e.target.value);
-    // console.log(e.target.name);
+    console.log(e.target.value);
     setEpisode({
       ...episode,
       [e.target.name]:
-        e.target.name === "file"
-          ? e.target.files
-            ? e.target.files[0]
-            : null
-          : e.target.value,
+        e.target.name === "file" ? e.target.files[0] : e.target.value,
     });
-    // console.log(CreatorPodcast);
   };
+  
 
-  useEffect(() => {
-    if (localStorage.getItem("creatorid") == null) {
-      navigate("/");
-    }
-  }, []);
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -64,10 +59,10 @@ function CreatorEditEpisode({url}) {
         data.append(key, episode[key]);
       }
     }
-    console.log(data.get('image'), "data");
-    data.append('creatorname', localStorage.getItem("creatorname"));
-    data.append('files', episode.file);
-    data.append('creatorId', localStorage.getItem('creatorid'));
+    console.log(data.get("image"), "data");
+    data.append("creatorname", localStorage.getItem("creatorname"));
+    data.append("files", episode.file);
+    data.append("creatorId", localStorage.getItem("creatorid"));
 
     axiosInstance
       .post("/uploadepisode", data, {
@@ -78,19 +73,24 @@ function CreatorEditEpisode({url}) {
       .then((response) => {
         console.log(response, "y");
         alert(response.data.msg);
-        navigate('/creatorprofile')
+        navigate("/creatorprofile");
       })
       .catch((error) => {
         console.error("Error submitting data: ", error);
-        alert("can't created")
+        alert("can't created");
       });
-  }
+  };
   const handleCancel = () => {
-    navigate("/creatorprofile")
-  }
+    navigate("/creatorprofile");
+  };
+    useEffect(() => {
+    if (localStorage.getItem("creatorid") == null) {
+      navigate("/");
+    }
+  }, []);
 
   return (
-    <div className='container mt-5'>
+    <div className="container mt-5">
       <div className="podcast_upload">
         <div className="container">
           <h5 className="text-center mb-5">Edit Episodes</h5>
@@ -103,7 +103,7 @@ function CreatorEditEpisode({url}) {
                 type="text"
                 class="form-control text-light"
                 id="Creator_Name"
-                value={episodeData.podcastId}
+                value={episodid.name}
                 placeholder={podcastInfo[1]}
                 disabled
                 onChange={handleInputChnage}
@@ -117,9 +117,8 @@ function CreatorEditEpisode({url}) {
                 type="text"
                 class="form-control text-light"
                 id="Creator_Name"
-                placeholder="Title"
+                placeholder={episodeData.episodetitle}
                 name="episodeTitle"
-                value={episodeData.episodetitle}
                 onChange={handleInputChnage}
               ></input>
               <label className="Creator_Name_label" for="">
@@ -129,14 +128,11 @@ function CreatorEditEpisode({url}) {
                 id="Creator_Name"
                 type="number"
                 class="form-control text-light"
-                placeholder="Title"
+                placeholder={episodeData.episodecount}
                 name="episodeCount"
                 onChange={handleInputChnage}
                 required
-                value={episodeData.episodecount}
-
               ></input>
-
             </div>
             <div className="col">
               {/*<div style={{ width: "100%" }}>
@@ -158,12 +154,22 @@ function CreatorEditEpisode({url}) {
               ></input>
             </div>
           </div>
-          <button className="btn btn-light ms-3 px-5 mt-5" onClick={handleSubmit}>Upload</button>
-          <button className="btn btn-secondary ms-3 px-5 mt-5" onClick={handleCancel}>Cancel</button>
+          <button
+            className="btn btn-light ms-3 px-5 mt-5"
+            onClick={handleSubmit}
+          >
+            Upload
+          </button>
+          <button
+            className="btn btn-secondary ms-3 px-5 mt-5"
+            onClick={handleCancel}
+          >
+            Cancel
+          </button>
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default CreatorEditEpisode
+export default CreatorEditEpisode;

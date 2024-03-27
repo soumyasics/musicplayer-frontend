@@ -35,6 +35,24 @@ function CreatorPodcastList({ data }) {
   const gotoPayment=(id)=>{
     navigate(`/paymentform/${id}`)
   }
+  const addToWishlist=(id)=>{
+    axiosInstance
+    .post('/addToWishlist', {
+      listnerId: localStorage.getItem("listenerid"),
+      podcastId: id
+    })
+    .then((response) => {
+      if (response.data.status == 400) {
+        alert('already in wishlist');
+      } else {
+        alert('saved to wishlist');
+      }
+      console.log(response, "ajeena");
+    })
+    .catch((error) => {
+      console.error("Error submitting data: ", error);
+    });  }
+
   return (
     <div className="podcast_list_main">
       <div class="container ">
@@ -58,6 +76,7 @@ function CreatorPodcastList({ data }) {
                     <h6 class="card-text">{a.description}</h6>
                     <h6 class="card-text">{a.price}</h6>
                     {data.role === 'creator' ? '' : <button onClick={()=>gotoPayment(a._id)} >Subscribe</button>}
+                    {data.role === 'creator' ? '' : <button onClick={()=>addToWishlist(a._id)} >Wishlist</button>}
                     {data.role === 'creator'?<div className="text-center m-3"><button onClick={()=>gotoEpisode(a._id + ',' + a.podcastname)} className="episodebtn">Go to Episode
                       <FaPlus  />
                     </button></div>:""}

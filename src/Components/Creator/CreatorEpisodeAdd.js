@@ -83,6 +83,7 @@ function CreatorEpisodeAdd() {
               class="form-control text-light"
               id="Creator_Name"
               placeholder={podcastInfo[1]}
+              value={podcastInfo[1]}
               disabled
               onChange={handleInputChnage}
               required

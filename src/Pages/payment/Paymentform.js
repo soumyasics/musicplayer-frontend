@@ -30,10 +30,17 @@ function Paymentform() {
             podcastid:id,
             paymentstatus:true
         });
-        if (result.status == 200) {
+        if (result.data.status == 400) {
+          alert('Already subscribed');
+          navigate('/listenersubscription')
+        } else {
+          if (result.data.status == 200) {
             alert('Payment Sucess');
             navigate('/listenersubscription')
-        }
+          }
+      }
+        
+        console.log(result)
       } catch (err) {
         console.log("Error:", err);
         if (err.response && err.response.data && err.response.data.message) {

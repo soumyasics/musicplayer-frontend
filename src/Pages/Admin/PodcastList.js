@@ -33,8 +33,8 @@ function PodcastList() {
         <Table striped bordered hover>
             <thead>
                 <tr>
-                    <th>profile</th>
-                    <th> Name</th>
+                    <th>podcast name</th>
+                    <th>creatorname</th>
                     <th> Mobile</th>
                     <th>Email ID</th>
                     <th> DOB</th>

@@ -4,7 +4,8 @@ import { useNavigate } from "react-router-dom";
 import axiosInstance from "../../Baseurl";
 import { useParams } from "react-router-dom";
 
-function CreatorEpisodes({ url }) {
+function ListenerViewEpisode() {
+  const url='http://localhost:4000/'
   const navigate = useNavigate();
   const [podcast, setPodcast] = useState([]);
   // const [podcastId, setPodcastId] = useState([]);
@@ -43,7 +44,7 @@ function CreatorEpisodes({ url }) {
   };
 
   const handleEpisodeEdit = (id) => {
-    var data = id + ',' + podcast[0].podcastname
+    var data = id + "," + podcast[0].podcastname;
     navigate(`/creatoreditepisode/${data}`);
   };
   return (
@@ -88,11 +89,6 @@ function CreatorEpisodes({ url }) {
                 <div className="text-center">
                   <h6 class="card-text col">{item.creatorname}</h6>
                   <h6>Discription {item.description}</h6>
-                  <button
-                    onClick={() => AddEpisode(item._id + "," + item.podcastname)}
-                  >
-                    Add Episode
-                  </button>
                 </div>
               </div>
             </Card>
@@ -121,13 +117,6 @@ function CreatorEpisodes({ url }) {
                 <div class="row">
                   <div className="col-3">
                     <p>Episode {item.episodecount}</p>
-                    <button
-                      onClick={() =>
-                        handleEpisodeEdit(item._id)
-                      }
-                    >
-                      Edit Episode
-                    </button>
                   </div>
 
                   <div className="col-6">
@@ -149,4 +138,4 @@ function CreatorEpisodes({ url }) {
   );
 }
 
-export default CreatorEpisodes;
+export default ListenerViewEpisode;

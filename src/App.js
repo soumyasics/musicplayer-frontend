@@ -37,6 +37,7 @@ import CreatorEpisodes from "./Components/Creator/CreatorEpisodes";
 import CreatorEditEpisode from "./Components/Creator/CreatorEditEpisode";
 import WishlistList from "./Components/Listener/WishlistList";
 import Subscriptions from "./Components/Listener/Subscriptions";
+import ListenerViewEpisode from "./Pages/Listener/ListenerViewEpisode";
 
 function App() {
 
@@ -89,7 +90,8 @@ function App() {
         <Route path="/creatorepisodes/:id" element={[<CreatorNavbar url={url}/>,<CreatorEpisodes url={url}  />,<Footer/>]} />
         <Route path="/creatoreditepisode/:id" element={[<CreatorNavbar url={url}/>,<CreatorEditEpisode url={url}   />,<Footer/>]} />
         <Route path="/wishlist" element={<WishlistList />} />
-        <Route path="/subscription" element={[<CreatorNavbar url={url}/>,<Subscriptions url={url} />,<Footer/>]} />       
+        <Route path="/subscription" element={[<CreatorNavbar url={url}/>,<Subscriptions url={url} />,<Footer/>]} />    
+        <Route path="/listenerviewepisode/:id" element={[<ListenerViewEpisode/>]}/>
       </Routes>
     </BrowserRouter>
   );
