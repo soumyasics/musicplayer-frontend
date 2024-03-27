@@ -3,9 +3,10 @@ import "./listenerprofile.css";
 import img from "../../Assest/CARD (1).png";
 import axiosInstance from "../../Baseurl";
 import { Link, useNavigate } from "react-router-dom";
+import ListenerSubscription from "./ListenerSubscription";
 
 function ListenerProfile({ url }) {
-  const navigate=useNavigate()
+  const navigate = useNavigate()
   const [listenerRegister, setListenerRegister] = useState({
     firstname: "",
     lastname: "",
@@ -20,7 +21,7 @@ function ListenerProfile({ url }) {
     pincode: "",
     image: "",
   });
-  const handlelogout=()=>{
+  const handlelogout = () => {
     localStorage.removeItem("listenerid")
     localStorage.removeItem("token")
     alert('logged out successfully')
@@ -43,7 +44,7 @@ function ListenerProfile({ url }) {
       navigate("/");
     }
   }, []);
-    return (
+  return (
     <div className="container">
       <div className="row" id="profilemain">
         <div className="col-3">
@@ -73,28 +74,9 @@ function ListenerProfile({ url }) {
           </div>
         </div>
       </div>
-      <div className="row mt-5 mb-5">
+      <div className=" mt-5 mb-5">
         <h5 className="mt-3">Recently Listened</h5>
-        <div className="col-3">
-          <card>
-            <img src={img} className="profile_img" alt="img"></img>
-          </card>
-        </div>
-        <div className="col-3">
-          <card>
-            <img src={img} className="profile_img" alt="img"></img>
-          </card>
-        </div>
-        <div className="col-3">
-          <card>
-            <img src={img} className="profile_img" alt="img"></img>
-          </card>
-        </div>
-        <div className="col-3">
-          <card>
-            <img src={img} className="profile_img" alt="img"></img>
-          </card>
-        </div>
+        <ListenerSubscription data={{url: url, role: 'listener'}}/>
       </div>
     </div>
   );

@@ -117,7 +117,6 @@ function AdminLogin() {
               onChange={(e) => setPassword(e.target.value)}
             />
             <div id="adminerror"></div>
-            <p className="listener_forgot-password">forgot password ?</p>
           </Form.Group>
           <div className="col-6 listenerCaptcha mt-5 mb-3">
             <div class="captchaborder mt-3">

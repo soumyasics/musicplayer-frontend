@@ -3,11 +3,10 @@ import Card from "react-bootstrap/Card";
 import { useNavigate } from "react-router-dom";
 import axiosInstance from "../../Baseurl";
 import { useParams } from "react-router-dom";
-
+import { CiCirclePlus } from "react-icons/ci";
 function CreatorEpisodes({ url }) {
   const navigate = useNavigate();
   const [podcast, setPodcast] = useState([]);
-  // const [podcastId, setPodcastId] = useState([]);
   const [episodes, setEpisodes] = useState([]);
   let { id } = useParams();
 
@@ -43,9 +42,10 @@ function CreatorEpisodes({ url }) {
   };
 
   const handleEpisodeEdit = (id) => {
-    var data = id + ',' + podcast[0].podcastname
+    var data = id + ',' + podcast[0].podcastname;
     navigate(`/creatoreditepisode/${data}`);
   };
+
   return (
     <div className="container mt-5">
       <div className="row">
@@ -85,13 +85,13 @@ function CreatorEpisodes({ url }) {
                     Your browser does not support the audio element.
                   </audio>
                 </div>
-                <div className="text-center">
-                  <h6 class="card-text col">{item.creatorname}</h6>
+                <div className="">
+                  <h6 className="card-text col">{item.creatorname}</h6>
                   <h6>Discription {item.description}</h6>
-                  <button
+                  <button className="episodebtn"
                     onClick={() => AddEpisode(item._id + "," + item.podcastname)}
                   >
-                    Add Episode
+                    Add Episode <CiCirclePlus/>
                   </button>
                 </div>
               </div>
@@ -108,45 +108,45 @@ function CreatorEpisodes({ url }) {
               boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
             }}
           >
-            {episodes.map((item) => (
-              <Card
-                className="col-6 m-3 mt-3"
-                style={{
-                  width: "95%",
-                  height: "fit-content",
-                  padding: "8px",
-                }}
-              >
-                <p>{item.episodetitle}</p>
-                <div class="row">
-                  <div className="col-3">
-                    <p>Episode {item.episodecount}</p>
-                    <button
-                      onClick={() =>
-                        handleEpisodeEdit(item._id)
-                      }
-                    >
-                      Edit Episode
-                    </button>
-                  </div>
+            {episodes.length ? (
+              episodes.map((item) => (
+                <Card
+                  key={item._id}
+                  className="col-6 m-3 mt-3"
+                  style={{
+                    width: "95%",
+                    height: "fit-content",
+                    padding: "8px",
+                  }}
+                >
+                  <p>{item.episodetitle}</p>
+                  <div className="row">
+                    <div className="col-3">
+                      <p>Episode {item.episodecount}</p>
+                      <button className="episodebtn"
+                        onClick={() => handleEpisodeEdit(item._id)}
+                      >
+                        Edit Episode
+                      </button>
+                    </div>
 
-                  <div className="col-6">
-                    <audio controls style={{ width: "150%" }}>
-                      <source
-                        src={item.audio ? url + item.audio.filename : ""}
-                        type="audio/mpeg"
-                      />
-                      Your browser does not support the audio element.
-                    </audio>
+                    <div className="col-6">
+                      <audio controls style={{ width: "150%" }}>
+                        <source
+                          src={item.audio ? url + item.audio.filename : ""}
+                          type="audio/mpeg"
+                        />
+                        Your browser does not support the audio element.
+                      </audio>
+                    </div>
                   </div>
-                </div>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
+                </Card>
+              ))
+            ) : (
+              <h4>please add episodes</h4>)}
+              </div>
+              </div>
 
-export default CreatorEpisodes;
+              </div>
+              </div>)
+}export default CreatorEpisodes;

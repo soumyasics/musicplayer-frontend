@@ -15,7 +15,7 @@ import { PiCopyrightThin } from "react-icons/pi";
 function Footer() {
   return (
     <div>
-      <div className="footer_body">
+      <div className="footer_body mt-5">
         <Row>
           <Col>
             {" "}

@@ -7,7 +7,6 @@
     padding: 1% 3%;
   }
   .AdminHomebody{
-    padding-top: 10%;
   }
 .AdminHomebodyheading{
     color:  hsl(126, 25%, 45%);
@@ -35,7 +34,11 @@
 .sidebarelements:hover{
   background-color: #292929;
   color: aliceblue;
+  /* width: 100%; */
 }
 .topimg{
   width: 100%;
+}
+.adminbg{
+  background-image: url("../../Assest/Group\ 2174.png");
 }

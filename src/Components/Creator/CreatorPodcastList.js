@@ -3,8 +3,7 @@ import axiosInstance from "../../Baseurl";
 import { FaPlus } from "react-icons/fa6";
 import './creatorpodcastlist.css';
 import { useNavigate } from "react-router-dom";
-
-function CreatorPodcastList({ data }) {
+import { IoMdHeart } from "react-icons/io";function CreatorPodcastList({ data }) {
   const [isPlaying, setIsPlaying] = useState(false);
 
   const togglePlay = () => {
@@ -46,6 +45,7 @@ function CreatorPodcastList({ data }) {
         alert('already in wishlist');
       } else {
         alert('saved to wishlist');
+        navigate("/listenerWhishlist")
       }
       console.log(response, "ajeena");
     })
@@ -57,7 +57,7 @@ function CreatorPodcastList({ data }) {
     <div className="podcast_list_main">
       <div class="container ">
       <h5 className="text-dark mt- pt-5">My podcasts</h5>
-        <div class="row">
+        <div class="row row-cols-1 row-cols-md-4 g-4 mt-3">
           {creatorpodcast.length ? (
             creatorpodcast.map((a) => {
               return (
@@ -73,14 +73,15 @@ function CreatorPodcastList({ data }) {
                   <div class="podcastlist_card_content">
                     <h4 class="card-title mt-3 mb-2t">{a.podcastname}</h4>
                     <h6 class="card-text col">{a.creatorname}</h6>
-                    <h6 class="card-text">{a.description}</h6>
+                    <h6 class="card-text" style={{height:"100px"}}>{a.description}</h6>
                     <h6 class="card-text">{a.price}</h6>
-                    {data.role === 'creator' ? '' : <button onClick={()=>gotoPayment(a._id)} >Subscribe</button>}
-                    {data.role === 'creator' ? '' : <button onClick={()=>addToWishlist(a._id)} >Wishlist</button>}
-                    {data.role === 'creator'?<div className="text-center m-3"><button onClick={()=>gotoEpisode(a._id + ',' + a.podcastname)} className="episodebtn">Go to Episode
+                    {data.role === 'creator' ? '' : <button className="episodebtn" onClick={()=>gotoPayment(a._id)} >Subscribe</button>}
+                    {data.role === 'creator'?<div className="text-center m-3"><button classname="episodebtn" onClick={()=>gotoEpisode(a._id + ',' + a.podcastname)} className="episodebtn">Go to Episode
                       <FaPlus  />
                     </button></div>:""}
-                    <div>
+                    <div className="audiodisplay">
+                    {data.role === 'creator' ? '' : <button  className="whishlistbtn ms-5" onClick={()=>addToWishlist(a._id)} ><IoMdHeart/></button>}
+
                   <audio controls className="w-100">
                     <source src={a.audio ? data.url + a.audio.filename : ''} type="audio/mpeg" />
                     Your browser does not support the audio element.

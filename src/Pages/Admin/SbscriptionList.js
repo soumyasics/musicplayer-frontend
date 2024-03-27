@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import AdminSidebar from '../../Components/Admin/AdminSidebar'
 import Table from 'react-bootstrap/Table';
 import axiosInstance from '../../Baseurl';
-
+import '../../Components/Creator/creatorpodcastlist.css'
 function SbscriptionList() {
     const [subscriptionList, setsubscriptionList] = useState([])
 

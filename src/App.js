@@ -38,60 +38,61 @@ import CreatorEditEpisode from "./Components/Creator/CreatorEditEpisode";
 import WishlistList from "./Components/Listener/WishlistList";
 import Subscriptions from "./Components/Listener/Subscriptions";
 import ListenerViewEpisode from "./Pages/Listener/ListenerViewEpisode";
+import AdminViewEpisode from "./Pages/Admin/AdminViewEpisode";
 
 function App() {
 
-  const url='http://localhost:4000/'
+  const url = 'http://localhost:4000/'
 
   return (
     <BrowserRouter>
       <Routes>
 
-        <Route path="/landingnav" element={<LandingNav/>} />
+        <Route path="/landingnav" element={<LandingNav />} />
         <Route path="/listenernav" element={<ListenerNav url={url} />} />
         <Route path="/creatornav" element={<CreatorNavbar url={url} />} />
 
-        
-        <Route path="/" element={[<LandingNav props={{value:"listenerlanding"}}/>,<LandingPage />,<Footer />]} />
+
+        <Route path="/" element={[<LandingNav props={{ value: "listenerlanding" }} />, <LandingPage />, <Footer />]} />
         <Route path="/footer" element={<Footer />} />
-        <Route path="/sidebar" element={<AdminSidebar/>}/>
-      
-        <Route path="/listenerlogin" element={[<LandingNav props={{value:"listenerlanding"}} />,<ListenerLogin />,<Footer />]} />
-        <Route path='/listenerregister' element={[<LandingNav props={{value:"listenerlanding"}}/>,<ListenerRegister/>,<Footer />]}/>
-        <Route path='/listeneredit' element={[<ListenerNav url={url}/>,<ListenerEdit url={url} />,<Footer />]}/>
+        <Route path="/sidebar" element={<AdminSidebar />} />
 
-        <Route path="/listenerhome" element={[<ListenerNav url={url}/>,<ListenerHome props={{role:"listenerhome"}}/>,<CreatorPodcastList data={{url: url, role: 'listener'}} />,<Footer />]}/>
-        <Route path="/forgotpassword" element={[<ListenerNav url={url} />,<ForgotPassword />,<Footer />]} />
-        <Route path='/listenerWhishlist' element={[<ListenerNav url={url} />,<ListenerWhishlist/>,<Footer />]}/>
-        <Route path='/listenerProfile' element={[<ListenerNav url={url} />,<ListenerProfile url={url} />,<Footer />]}/>
-        <Route path='/listenersubscription' element={[<ListenerNav url={url} />,<ListenerSubscription data={{url: url, role: 'listener'}}/>,<Footer />]}/>
+        <Route path="/listenerlogin" element={[<LandingNav props={{ value: "listenerlanding" }} />, <ListenerLogin />, <Footer />]} />
+        <Route path='/listenerregister' element={[<LandingNav props={{ value: "listenerlanding" }} />, <ListenerRegister />, <Footer />]} />
+        <Route path='/listeneredit' element={[<ListenerNav url={url} />, <ListenerEdit url={url} />, <Footer />]} />
 
-        <Route path="/creatorlogin" element={[<LandingNav props={{value:"creatorlanding"}} />,<CreatorLogin/>,<Footer />]} />
-        <Route path='/creatorregister' element={[<LandingNav  props={{value:"creatorlanding"}}/>,<CreatorRegister/>,<Footer />]}/>
-        <Route path='/creatorhome' element={[<CreatorNavbar url={url} />,<CreatorHome/>,<Footer />]}/>
-        <Route path='/creatorsubscription' element={[<CreatorNavbar url={url} />,<CreatorSubscription/>,<Footer />]}/>
-        <Route path='/creatorprofile' element={[<CreatorNavbar url={url} />,<CreatorProfile  url={url} />,<CreatorPodcastList data={{url: url, role: 'creator'}} />,<Footer />]}/>
-        <Route path="/creatorforgotpassword" element={[<CreatorNavbar url={url} />,<CreatorForgot />,<Footer />]} />
+        <Route path="/listenerhome" element={[<ListenerNav url={url} />, <ListenerHome props={{ role: "listenerhome" }} />, <CreatorPodcastList data={{ url: url, role: 'listener' }} />, <Footer />]} />
+        <Route path="/forgotpassword" element={[<ListenerNav url={url} />, <ForgotPassword />, <Footer />]} />
+        <Route path='/listenerWhishlist' element={[<ListenerNav url={url} />, <ListenerWhishlist />, <Footer />]} />
+        <Route path='/listenerProfile' element={[<ListenerNav url={url} />, <ListenerProfile url={url} />, <Footer />]} />
+        <Route path='/listenersubscription' element={[<ListenerNav url={url} />, <ListenerSubscription data={{ url: url, role: 'listener' }} />, <Footer />]} />
 
-        <Route path='/creatorredit' element={[<CreatorNavbar url={url} />,<CreatorProfileEdit/>,<Footer />]}/>
-        <Route path='/creatorupload' element={<CreatorUploadPage/>}/>
-        <Route path='/creatoruploadedit' element={<CreatorUploadPoadcastEdit/>}/>
-        <Route path='/creatorepisodadd/:id' element={<CreatorEpisodeAdd/>}/>
-        <Route path='/creatorpodcastlist' element={[<CreatorPodcastList data={{url: url, role: 'creator'}} />]}/>
+        <Route path="/creatorlogin" element={[<LandingNav props={{ value: "creatorlanding" }} />, <CreatorLogin />, <Footer />]} />
+        <Route path='/creatorregister' element={[<LandingNav props={{ value: "creatorlanding" }} />, <CreatorRegister />, <Footer />]} />
+        <Route path='/creatorhome' element={[<CreatorNavbar url={url} />, <CreatorHome />, <Footer />]} />
+        <Route path='/creatorsubscription' element={[<CreatorNavbar url={url} />, <CreatorSubscription />, <Footer />]} />
+        <Route path='/creatorprofile' element={[<CreatorNavbar url={url} />, <CreatorProfile url={url} />, <CreatorPodcastList data={{ url: url, role: 'creator' }} />, <Footer />]} />
+        <Route path="/creatorforgotpassword" element={[<CreatorNavbar url={url} />, <CreatorForgot />, <Footer />]} />
 
-        <Route path="/adminhome" element={<AdminLandingPage />} />
+        <Route path='/creatorredit' element={[<CreatorNavbar url={url} />, <CreatorProfileEdit />, <Footer />]} />
+        <Route path='/creatorupload' element={<CreatorUploadPage />} />
+        <Route path='/creatoruploadedit' element={<CreatorUploadPoadcastEdit />} />
+        <Route path='/creatorepisodadd/:id' element={<CreatorEpisodeAdd />} />
+        <Route path='/creatorpodcastlist' element={[<CreatorPodcastList data={{ url: url, role: 'creator' }} />]} />
+
+        <Route path="/adminhome" element={[<AdminLandingPage />, <Footer />]} />
         <Route path="/adminlogin" element={<AdminLogin />} />
-        <Route path="/admindashboard" element={[<AdminDashboard />,<ListenerList/>,<Footer/>]} />
+        <Route path="/admindashboard" element={[<AdminDashboard />, <ListenerList />, <Footer />]} />
         <Route path="/paymentform/:id" element={<Paymentform />} />
         <Route path="/listenerlist" element={<ListenerList url={url} />} />
-        <Route path="/creatorlist" element={<CreatorList />} />
-        <Route path="/podcastlist" element={<PodcastList />} />
+        <Route path="/creatorlist" element={<CreatorList url={url} />} />
+        <Route path="/podcastlist" element={<PodcastList url={url} />} />
         <Route path="/subscriptionList" element={<SbscriptionList />} />
-        <Route path="/creatorepisodes/:id" element={[<CreatorNavbar url={url}/>,<CreatorEpisodes url={url}  />,<Footer/>]} />
-        <Route path="/creatoreditepisode/:id" element={[<CreatorNavbar url={url}/>,<CreatorEditEpisode url={url}   />,<Footer/>]} />
-        <Route path="/wishlist" element={<WishlistList />} />
-        <Route path="/subscription" element={[<CreatorNavbar url={url}/>,<Subscriptions url={url} />,<Footer/>]} />    
-        <Route path="/listenerviewepisode/:id" element={[<ListenerViewEpisode/>]}/>
+        <Route path="/creatorepisodes/:id" element={[<CreatorNavbar url={url} />, <CreatorEpisodes url={url} />, <Footer />]} />
+        <Route path="/creatoreditepisode/:id" element={[<CreatorNavbar url={url} />, <CreatorEditEpisode url={url} />, <Footer />]} />
+        <Route path="/subscription" element={[<CreatorNavbar url={url} />, <Subscriptions url={url} />, <Footer />]} />
+        <Route path="/listenerviewepisode/:id" element={[<ListenerNav url={url} />, <ListenerViewEpisode />, <Footer />]} />
+        <Route path="/adminviewepisode/:id" element={<AdminViewEpisode url={url} />} />
       </Routes>
     </BrowserRouter>
   );

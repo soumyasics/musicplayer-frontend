@@ -3,7 +3,7 @@ import AdminSidebar from '../../Components/Admin/AdminSidebar'
 import Table from 'react-bootstrap/Table';
 import axiosInstance from '../../Baseurl';
 
-function CreatorList() {
+function CreatorList({ url }) {
     const [creatorlist, setCreatorList] = useState([])
 
     useEffect(() => {
@@ -21,7 +21,7 @@ function CreatorList() {
     }, []);
 
     return (
-        <div className='row mt-5 pt-5'>
+        <div className='row adminbg mt-5 pt-5'>
             <div className='col-1 mt-5 py-5 px-4'><AdminSidebar /></div>
             <div className='col-10'>< div style={{
                 margin: "8px", padding: "14px",
@@ -45,7 +45,14 @@ function CreatorList() {
                         creatorlist.map((item, index) => (
                             <tbody>
                                 <tr>
-                                    <td>{ }</td>
+                                    <td>{<div className="circular-img">
+                                        <img
+                                            src={url + item.image.filename}
+                                            alt="img"
+                                            className="profileimg"
+                                        ></img>
+                                    </div>
+                                    }</td>
                                     <td>{item.firstname}{item.lastname}</td>
                                     <td>{item.mobile}</td>
                                     <td>{item.email}</td>
@@ -62,7 +69,7 @@ function CreatorList() {
                 </Table>
             </div></div>
         </div>
-        )
+    )
 }
 
 export default CreatorList

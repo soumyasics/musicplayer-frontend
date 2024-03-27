@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axiosInstance from '../../Baseurl';
 import { useNavigate } from "react-router-dom";
 import Table from 'react-bootstrap/Table';
+import '../Creator/creatorpodcastlist.css';
 
 function ListenerWhishlist() {
   const navigate = useNavigate();
@@ -35,7 +36,7 @@ function ListenerWhishlist() {
   }
 
   return (
-    <div className="container">
+    <div className="podcast_list_main container">
       <h4>Wishlist</h4>
       <div class="row">
             {wishlist.length ? (
@@ -53,8 +54,8 @@ function ListenerWhishlist() {
                     <div class="podcastlist_card_content">
                       <h4 class="card-title mt-3 mb-2t">{a.podcastId.podcastname}</h4>
                       <h6 class="card-text col">{a.podcastId.creatorname}</h6>
-                      <h6 class="card-text">{a.podcastId.description}</h6>
-                      <button onClick={()=>gotoPayment(a.podcastId._id)} >Subscribe</button>
+                      <h6 class="card-text" style={{height:"100px"}}>{a.podcastId.description}</h6>
+                      <button className='episodebtn' onClick={()=>gotoPayment(a.podcastId._id)} >Subscribe</button>
                       <audio controls className="w-100">
                         <source src={a.podcastId.audio ? url + a.podcastId.audio.filename : ''} type="audio/mpeg" />
                         Your browser does not support the audio element.
@@ -65,7 +66,7 @@ function ListenerWhishlist() {
               })
             ) : (
               <div className="no_data">
-                <h1>No podcast found</h1>
+                <h1>No wishlist found</h1>
               </div>
             )}
           </div>

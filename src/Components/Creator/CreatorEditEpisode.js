@@ -7,7 +7,7 @@ import Card from "react-bootstrap/Card";
 function CreatorEditEpisode({ url }) {
   const [episodeData, seEpisodedData] = useState({});
 
-  const {id} = useParams();
+  const { id } = useParams();
   var episodid = {
     id: id.split(',')[0],
     name: id.split(',')[1]
@@ -47,10 +47,22 @@ function CreatorEditEpisode({ url }) {
         e.target.name === "file" ? e.target.files[0] : e.target.value,
     });
   };
-  
 
 
+  const handleDelete = (e) => {
+    e.preventDefault();
+   axiosInstance.post(`/deleteepisode/${episodid.id}`)
+   .then((response)=>{
+    console.log(response.data.data, "delete");
+    alert(response.data.msg);
+    navigate(`/creatorepisodes/${episodeData.podcastId}`)
 
+   })
+   .catch((error) => {
+    console.error("Error submitting data: ", error);
+    alert("Can't delete episode");
+  });
+  }
   const handleSubmit = (e) => {
     e.preventDefault();
     let data = new FormData();
@@ -65,25 +77,20 @@ function CreatorEditEpisode({ url }) {
     data.append("creatorId", localStorage.getItem("creatorid"));
 
     axiosInstance
-      .post("/uploadepisode", data, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      })
-      .then((response) => {
-        console.log(response, "y");
-        alert(response.data.msg);
-        navigate("/creatorprofile");
-      })
-      .catch((error) => {
-        console.error("Error submitting data: ", error);
-        alert("can't created");
-      });
-  };
-  const handleCancel = () => {
-    navigate("/creatorprofile");
-  };
-    useEffect(() => {
+    .post(`/editepisode/${episodid.id}`, data) // Corrected the endpoint URL and added data
+    .then((response) => {
+      console.log(response.data.data, "y");
+
+      alert(response.data.msg);
+      navigate("/creatorprofile");
+    })
+    .catch((error) => {
+      console.error("Error submitting data: ", error);
+      alert("Can't update episode");
+    });
+};
+ 
+  useEffect(() => {
     if (localStorage.getItem("creatorid") == null) {
       navigate("/");
     }
@@ -162,7 +169,7 @@ function CreatorEditEpisode({ url }) {
           </button>
           <button
             className="btn btn-secondary ms-3 px-5 mt-5"
-            onClick={handleCancel}
+            onClick={handleDelete}
           >
             Cancel
           </button>

@@ -6,7 +6,7 @@ import { Container } from "react-bootstrap";
 import axiosInstance from "../../Baseurl";
 import validator from "validator";
 
-import { useNavigate } from "react-router-dom";
+import { useNavigate,Link} from "react-router-dom";
 
 function ListenerEdit() {
   const navigate = useNavigate();
@@ -99,7 +99,7 @@ function ListenerEdit() {
       navigate("/");
     }
   }, []);
-    return (
+  return (
     <div>
       <form onSubmit={onSubmitData}>
         <Container>
@@ -140,7 +140,7 @@ function ListenerEdit() {
                 />
               </div>
               <div className="mb-3 me-5">
-              <label>Date of birth</label>
+                <label>Date of birth</label>
                 <input
                   type="date"
                   placeholder="dob"
@@ -235,8 +235,8 @@ function ListenerEdit() {
             <button type="submit" className=" RegisterButton ps-5 pe-5 p-2">
               Save Changes
             </button>
-            <button type="reset" className="cancelbutton ps-5 pe-5 p-2">
-              Cancel
+            <button type="reset" className="cancelbutton ps-5 pe-5 p-2"><Link className="text-dark" to="/listenerProfile">Cancel
+            </Link>
             </button>
           </div>
         </Container>

@@ -23,7 +23,7 @@ function ListenerList({ url }) {
     }, []);
 
     return (
-        <div className='row mt-5 pt-5'>
+        <div className=' row mt-5 pt-5'>
             <div className='col-1 mt-5 py-5 px-4'></div>
             <div className='col-10'>< div style={{
                 margin: "8px", padding: "14px",
@@ -51,7 +51,7 @@ function ListenerList({ url }) {
                                 <tr>
                                     <td>                            <div>
                                         <img style={{ width: "100%", height: "300px", boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px", margin: "0px" }}
-                                            src={url + item.image.originalname}
+                                            src={url + item.image.filename}
                                             alt="img"
                                             className="listenerprofileimg"
                                         ></img></div>
