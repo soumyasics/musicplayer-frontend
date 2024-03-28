@@ -67,13 +67,14 @@ function CreatorEditEpisode({ url }) {
     e.preventDefault();
     let data = new FormData();
     for (let key in episode) {
-      if (key != "file") {
-        data.append(key, episode[key]);
+      if (key = "file") {
+        data.append("file", episode[key]);
       }
+      data.append(key, episode[key]);
+
     }
-    console.log(data.get("image"), "data");
+    console.log(episode);
     data.append("creatorname", localStorage.getItem("creatorname"));
-    data.append("files", episode.file);
     data.append("creatorId", localStorage.getItem("creatorid"));
 
     axiosInstance
@@ -82,7 +83,7 @@ function CreatorEditEpisode({ url }) {
       console.log(response.data.data, "y");
 
       alert(response.data.msg);
-      navigate("/creatorprofile");
+      // navigate("/creatorprofile");
     })
     .catch((error) => {
       console.error("Error submitting data: ", error);
