@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import Card from "react-bootstrap/Card";
 import axiosInstance from '../../Baseurl';
 import Table from 'react-bootstrap/Table';
 
 function Subscriptions({ url }) {
-    const [Subscriptions, setSubscriptions] = useState([]);
+    const [subscriptions, setSubscriptions] = useState([]);
 
     useEffect(() => {
         axiosInstance
@@ -38,7 +37,7 @@ function Subscriptions({ url }) {
                             <th>Price</th>
                         </tr>
                     </thead>
-                    {Subscriptions.map((item) => (
+                    {subscriptions.length ? (subscriptions.map((item) => (
 
                         <tbody>
                             <tr>
@@ -57,7 +56,7 @@ function Subscriptions({ url }) {
                             </tr>
                         </tbody>
 
-                    ))}
+                    ))):<h4>no subscribers present</h4>}
 
                 </Table>
             </div>

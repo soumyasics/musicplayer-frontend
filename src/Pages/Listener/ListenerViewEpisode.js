@@ -6,6 +6,12 @@ import { useParams, Link } from "react-router-dom";
 import { CiCirclePlus } from "react-icons/ci";
 import AddReview from "./AddReview";
 
+
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+import Modal from 'react-bootstrap/Modal';
+
+
 function ListenerViewEpisode() {
   const url = 'http://localhost:4000/'
   const navigate = useNavigate();
@@ -41,9 +47,43 @@ function ListenerViewEpisode() {
       });
   }, []);
 
-  const AddReview=(id)=>{
-    navigate("/addreview/"+id)
+  // const AddReview = (id) => {
+  //   navigate("/addreview/" + id)
+  // }
+
+
+
+
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+  const [feedback, setFeedback] = useState("")
+
+  const handlereview = (e) => {
+
+    setFeedback(e.target.value)
   }
+  const submitfeedback = (creatorid) => {
+
+    const listenerid = localStorage.getItem("listenerid")
+    const listenername = localStorage.getItem("listenername")
+    console.log(feedback, creatorid, listenerid, listenername);
+    // listenerreview
+    const data = { feedback, creatorid, listenerid, listenername }
+    console.log(data);
+    axiosInstance
+      .post("/listenerreview", data)
+      .then((response) => {
+        console.log(response, "y");
+        alert(response.data.msg);
+        // navigate('/creatorprofile')
+      })
+      .catch((error) => {
+        console.error("Error submitting data: ", error);
+      });
+  };
 
 
 
@@ -92,11 +132,37 @@ function ListenerViewEpisode() {
                   <button className="episodebtn"><Link className="text-light" to="/listenersubscription">Go to Podcast List
                   </Link>
                   </button>
-                  <button onClick={()=>AddReview(item._id)} className="episodebtn"><Link className="text-light">Add Review
+                  <button onClick={handleShow} className="episodebtn"><Link className="text-light">Add Review
                   </Link>
                   </button>
                 </div>
               </div>
+
+
+              <Modal show={show} onHide={handleClose}>
+                <Modal.Header closeButton>
+                  <Modal.Title>Add feedback</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                  <Form>
+                    <Form.Group
+                      className="mb-3"
+                      controlId="exampleForm.ControlTextarea1"
+                      onChange={handlereview}
+                    >
+                      <Form.Control as="textarea" rows={3} />
+                    </Form.Group>
+                  </Form>
+                </Modal.Body>
+                <Modal.Footer>
+                  <Button variant="secondary" onClick={handleClose}>
+                    Close
+                  </Button>
+                  <Button variant="primary" onClick={() => submitfeedback(item._id)}>
+                    Submit
+                  </Button>
+                </Modal.Footer>
+              </Modal>
             </Card>
           ))}
         </div>

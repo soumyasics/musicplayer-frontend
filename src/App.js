@@ -35,11 +35,9 @@ import PodcastList from "./Pages/Admin/PodcastList";
 import SbscriptionList from "./Pages/Admin/SbscriptionList";
 import CreatorEpisodes from "./Components/Creator/CreatorEpisodes";
 import CreatorEditEpisode from "./Components/Creator/CreatorEditEpisode";
-import WishlistList from "./Components/Listener/WishlistList";
 import Subscriptions from "./Components/Listener/Subscriptions";
 import ListenerViewEpisode from "./Pages/Listener/ListenerViewEpisode";
 import AdminViewEpisode from "./Pages/Admin/AdminViewEpisode";
-import AddReview from "./Pages/Listener/AddReview";
 
 function App() {
 
@@ -94,7 +92,6 @@ function App() {
         <Route path="/subscription" element={[<CreatorNavbar url={url} />, <Subscriptions url={url} />, <Footer />]} />
         <Route path="/listenerviewepisode/:id" element={[<ListenerNav url={url} />, <ListenerViewEpisode />, <Footer />]} />
         <Route path="/adminviewepisode/:id" element={<AdminViewEpisode url={url} />} />
-        <Route path="/addreview" element={<AddReview/>}/>
       </Routes>
     </BrowserRouter>
   );

@@ -42,6 +42,8 @@ function ListenerLogin() {
           toast.success("Login successful");
           localStorage.setItem("token", result.data.token);
           localStorage.setItem("listenerid", result.data.id);
+          localStorage.setItem("listenername", result.data.listenername);
+
           console.log(result);
           console.log(result.data.id);
           navigate("/listenerhome");
