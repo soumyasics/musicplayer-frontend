@@ -7,7 +7,7 @@ function CreatorUploadPage() {
   const [CreatorPodcast, setCreatorPodcast] = useState({
     podcastname: "",
     description: "",
-    price:"",
+    price:"$",
     coverimage: "",
     audio:""
   });
@@ -123,7 +123,7 @@ const creatorname=localStorage.getItem('creatorname')
           price
          </label>
          <input
-           type="text"
+           type="number"
            class="form-control"
            id="price"
            placeholder="price"

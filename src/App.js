@@ -39,6 +39,7 @@ import WishlistList from "./Components/Listener/WishlistList";
 import Subscriptions from "./Components/Listener/Subscriptions";
 import ListenerViewEpisode from "./Pages/Listener/ListenerViewEpisode";
 import AdminViewEpisode from "./Pages/Admin/AdminViewEpisode";
+import AddReview from "./Pages/Listener/AddReview";
 
 function App() {
 
@@ -62,7 +63,7 @@ function App() {
         <Route path='/listeneredit' element={[<ListenerNav url={url} />, <ListenerEdit url={url} />, <Footer />]} />
 
         <Route path="/listenerhome" element={[<ListenerNav url={url} />, <ListenerHome props={{ role: "listenerhome" }} />, <CreatorPodcastList data={{ url: url, role: 'listener' }} />, <Footer />]} />
-        <Route path="/forgotpassword" element={[<ListenerNav url={url} />, <ForgotPassword />, <Footer />]} />
+        <Route path="/forgotpassword" element={[<LandingNav props={{ value: "listenerlanding" }} />, <ForgotPassword />, <Footer />]} />
         <Route path='/listenerWhishlist' element={[<ListenerNav url={url} />, <ListenerWhishlist />, <Footer />]} />
         <Route path='/listenerProfile' element={[<ListenerNav url={url} />, <ListenerProfile url={url} />, <Footer />]} />
         <Route path='/listenersubscription' element={[<ListenerNav url={url} />, <ListenerSubscription data={{ url: url, role: 'listener' }} />, <Footer />]} />
@@ -72,7 +73,7 @@ function App() {
         <Route path='/creatorhome' element={[<CreatorNavbar url={url} />, <CreatorHome />, <Footer />]} />
         <Route path='/creatorsubscription' element={[<CreatorNavbar url={url} />, <CreatorSubscription />, <Footer />]} />
         <Route path='/creatorprofile' element={[<CreatorNavbar url={url} />, <CreatorProfile url={url} />, <CreatorPodcastList data={{ url: url, role: 'creator' }} />, <Footer />]} />
-        <Route path="/creatorforgotpassword" element={[<CreatorNavbar url={url} />, <CreatorForgot />, <Footer />]} />
+        <Route path="/creatorforgotpassword" element={[<LandingNav props={{ value: "creatorlanding" }} />, <CreatorForgot />, <Footer />]} />
 
         <Route path='/creatorredit' element={[<CreatorNavbar url={url} />, <CreatorProfileEdit />, <Footer />]} />
         <Route path='/creatorupload' element={<CreatorUploadPage />} />
@@ -82,7 +83,7 @@ function App() {
 
         <Route path="/adminhome" element={[<AdminLandingPage />, <Footer />]} />
         <Route path="/adminlogin" element={<AdminLogin />} />
-        <Route path="/admindashboard" element={[<AdminDashboard />, <ListenerList />, <Footer />]} />
+        <Route path="/admindashboard" element={[<AdminDashboard />, <ListenerList url={url} />, <Footer />]} />
         <Route path="/paymentform/:id" element={<Paymentform />} />
         <Route path="/listenerlist" element={<ListenerList url={url} />} />
         <Route path="/creatorlist" element={<CreatorList url={url} />} />
@@ -93,6 +94,7 @@ function App() {
         <Route path="/subscription" element={[<CreatorNavbar url={url} />, <Subscriptions url={url} />, <Footer />]} />
         <Route path="/listenerviewepisode/:id" element={[<ListenerNav url={url} />, <ListenerViewEpisode />, <Footer />]} />
         <Route path="/adminviewepisode/:id" element={<AdminViewEpisode url={url} />} />
+        <Route path="/addreview" element={<AddReview/>}/>
       </Routes>
     </BrowserRouter>
   );

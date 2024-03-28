@@ -212,6 +212,7 @@ function ListenerRegister() {
                   name="country"
                   className="form-control"
                   onChange={ListenerRegisterChange}
+                  required
                 >
                   <option value="">Select Country</option>
                   <option>Nationality</option>

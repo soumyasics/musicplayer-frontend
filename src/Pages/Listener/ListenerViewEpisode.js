@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import axiosInstance from "../../Baseurl";
 import { useParams, Link } from "react-router-dom";
 import { CiCirclePlus } from "react-icons/ci";
+import AddReview from "./AddReview";
 
 function ListenerViewEpisode() {
   const url = 'http://localhost:4000/'
@@ -40,6 +41,9 @@ function ListenerViewEpisode() {
       });
   }, []);
 
+  const AddReview=(id)=>{
+    navigate("/addreview/"+id)
+  }
 
 
 
@@ -86,6 +90,9 @@ function ListenerViewEpisode() {
                   <h6 className="card-text col">{item.creatorname}</h6>
                   <h6>Discription {item.description}</h6>
                   <button className="episodebtn"><Link className="text-light" to="/listenersubscription">Go to Podcast List
+                  </Link>
+                  </button>
+                  <button onClick={()=>AddReview(item._id)} className="episodebtn"><Link className="text-light">Add Review
                   </Link>
                   </button>
                 </div>

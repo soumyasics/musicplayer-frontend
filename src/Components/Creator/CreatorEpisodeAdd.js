@@ -16,18 +16,14 @@ function CreatorEpisodeAdd() {
     file: ""
   });
 
-  const handleInputChnage = (e) => {
+  const handleInputChnage = (a) => {
     // console.log(e.target.value);
     // console.log(e.target.name);
-    setEpisode({
-      ...episode,
-      [e.target.name]:
-        e.target.name === "file"
-          ? e.target.files
-            ? e.target.files[0]
-            : null
-          : e.target.value,
-    });
+    if (a.target.name == "file") {
+      setEpisode({ ...episode, file: a.target.files[0] });
+    } else {
+      setEpisode({ ...episode, [a.target.name]: a.target.value });
+    }
     // console.log(CreatorPodcast);
   };
 
@@ -39,19 +35,20 @@ function CreatorEpisodeAdd() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    let data = new FormData();
-    for (let key in episode) {
-      if (key != "file") {
-        data.append(key, episode[key]);
-      }
-    }
-    console.log(data.get('image'), "data");
-    data.append('creatorname', localStorage.getItem("creatorname"));
-    data.append('files', episode.file);
-    data.append('creatorId', localStorage.getItem('creatorid'));
-
+    // let data = new FormData();
+    // for (let key in episode) {
+    //   if (key = "file") {
+    //     data.append("file", episode[key]);
+    //   }
+    // }
+    // // console.log(data.get('image'), "data");
+    // data.append('creatorname', localStorage.getItem("creatorname"));
+    // data.append('files', episode.file);
+    // data.append('creatorId', localStorage.getItem('creatorid'));
+    // data.append("files", episode.file);
+    console.log(episode);
     axiosInstance
-      .post("/uploadepisode", data, {
+      .post("/uploadepisode", episode, {
         headers: {
           "Content-Type": "multipart/form-data",
         },

@@ -8,6 +8,8 @@ function ListenerList({ url }) {
 
     const [listenerlist, setListenerList] = useState([])
 
+    console.log(url);
+
     useEffect(() => {
         axiosInstance
             .post("/viewListeners")
@@ -50,7 +52,7 @@ function ListenerList({ url }) {
                             <tbody>
                                 <tr>
                                     <td>                            <div>
-                                        <img style={{ width: "100%", height: "300px", boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px", margin: "0px" }}
+                                        <img style={{ width: "50px", height: "50px", boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px", margin: "0px" }}
                                             src={url + item.image.filename}
                                             alt="img"
                                             className="listenerprofileimg"
@@ -63,7 +65,6 @@ function ListenerList({ url }) {
                                     <td>{item.gender}</td>
                                     <td>{item.country}</td>
                                     <td>{item.city}</td>
-
                                 </tr>
                             </tbody>
                         ))

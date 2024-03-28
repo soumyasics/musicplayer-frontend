@@ -232,6 +232,7 @@ function CreatorRegister() {
                     name="country"
                     className="form-control"
                     onChange={creatorRegisterChange}
+                    required
                   >
                     <option value="">Select Country</option>
                     <option>Nationality</option>

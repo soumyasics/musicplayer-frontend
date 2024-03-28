@@ -5,117 +5,120 @@ import { useNavigate } from "react-router-dom";
 import axiosInstance from '../../Baseurl';
 
 function ForgotPassword() {
-  const[email,setEmail]=useState("")
-  const[password,setPassword]=useState("")
-  const[conformpassword,setConformpassword]=useState("")
-
+  const [resetpass, setResetpass] = useState({
+    email: "",
+    password: "",
+    confirmpassword: "",
+  });
   const navigate = useNavigate();
+  const [errors, setErrors] = useState({
+    email: "",
+    password: "",
+    confirmpassword: "",
+  });
 
-const handleforgot=async(e)=>{
-  e.preventDefault()
+  const changefn = (e) => {
+    const { name, value } = e.target;
+    setResetpass((preData) => ({ ...preData, [name]: value }));
+    setErrors((preErrors) => ({ ...preErrors, [name]: "" }));
+  };
+  let formValid = true;
 
-const validateEmail = (email) => {
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      return emailRegex.test(email);
-    };
+  const submitfn = (e) => {
+    e.preventDefault();
 
-    if (!validateEmail(email)) {
-      document.getElementById("alertuser").innerHTML =
-        "Please enter a valid email";
-      return;
+    let errors = {};
+    if (!resetpass.email.trim()) {
+      formValid = false;
+      errors.email = "Email is required";
     }
-    if (password === "") {
-      document.getElementById("alertuser").innerHTML = "password is empty";
-      return;
+    if (!resetpass.password.trim()) {
+      formValid = false;
+      errors.password = "Password is required";
+    } else if (resetpass.password.length < 5) {
+      errors.password = "Password should be atleast 6 characters";
     }
-    if (conformpassword === "") {
-      document.getElementById("alertuser").innerHTML = "conform password is empty";
-      return;
+
+    if (resetpass.confirmpassword !== resetpass.password) {
+      formValid = false;
+      errors.confirmpassword = "Password not matched";
     }
-    if (password == conformpassword) {
-      document.getElementById("alertuser").innerHTML = "password is not matched";
-      return;
+
+    if (!resetpass.confirmpassword.trim()) {
+      formValid = false;
+      errors.confirmpassword = "Confirm Password is required";
     }
-    try {
-      const result = await axiosInstance.post("/listenerforgotpassword", {
-        email,
-        password,
-        conformpassword
-      })
-      if (result.data.message) {
-          alert("Login successful");
-          // localStorage.setItem("token", result.data.token);
-          // localStorage.setItem("listenerid", result.data.id);
-          // console.log(result);
-          // console.log(result.data.id);
-          // navigate("/listenerhome");
-        } 
-      }
-     catch (err) {
-      console.log("Error:", err);
-      if (err.response && err.response.data && err.response.data.message) {
-        document.getElementById("alertuser").innerHTML =
-          err.response.data.message;
-      } else {
-        document.getElementById("alertuser").innerHTML =
-          "An error occurred. Please try again.";
-      }
+
+    setErrors(errors);
+
+    if (formValid) {
+      axiosInstance
+        .post("/listenerforgotpassword", resetpass)
+        .then((res) => {
+          console.log("data", res);
+
+          if (res.data.status == 200) {
+            alert(res.data.msg);
+            // navigate("/sign_in");
+          } else if (res.data.status == 500) {
+            alert(res.data.msg);
+          }
+        })
+        .catch((err) => {
+          console.log("error", err);
+        });
+    } else {
+      console.log("form", formValid);
     }
-  }
+  };
+
+
   return (
-    <div>
-      <div>
-        <div className="listenerforgot_main">
-          <div className="row">
-            <div className="col-6"></div>
-            <div className="col-6">
-              <h6 className="pt-5 mt-5 text-center">Change password</h6>
-              <div className="listenerlogin_form">
-                <form type="Submit">
-                  <Form.Group
-                    className="mb-3"
-                    controlId="exampleForm.ControlInput1"
-                  >
-                    <Form.Control type="email" placeholder="Email Address" />
-                  </Form.Group>
-                  <Form.Group
-                    className="mb-3"
-                    controlId="exampleForm.ControlInput1"
-                  >
-                    <Form.Control type="password" placeholder="new password" />
-                  </Form.Group>
-                  <Form.Group
-                    className="mb-3"
-                    controlId="exampleForm.ControlInput1"
-                  >
-                    <Form.Control
-                      type="password"
-                      placeholder="Conform password"
-                    />
-                  </Form.Group>
+    <div className="creatorforgot_main">
+      <div className="row">
+        <div className="col-6"></div>
+        <div className="col-6">
+          <h6 className="pt-5 mt-5 text-center">Change password</h6>
+          <div className="listenerlogin_form">
+            <form type="Submit" onSubmit={submitfn}>
+              <Form.Group
+                className="mb-3"
+                controlId="exampleForm.ControlInput1"
+              >
+                <Form.Control type="email" placeholder="Email Address" name='email' onChange={changefn}
+                />{errors.email && (
+                  <div className="text-danger errortext">{errors.email}</div>
+                )}
+              </Form.Group>
+              <Form.Group
+                className="mb-3"
+                controlId="exampleForm.ControlInput1"
+              >
+                <Form.Control type="password" name='password' placeholder="new password" onChange={changefn}
+                />{errors.password && (
+                  <div className="text-danger errortext">{errors.password}</div>
+                )}
+              </Form.Group>
+              <Form.Group
+                className="mb-3"
+                controlId="exampleForm.ControlInput1"
+              >
+                <Form.Control type="password" name='confirmpassword' placeholder="Conform password" onChange={changefn}
+                />{errors.confirmpassword && (
+                  <div className="text-danger errortext">{errors.confirmpassword}</div>
+                )}
+              </Form.Group>
 
-                  <div>
-                    <button onSubmit={handleforgot} type="submit" className="listenerloginbtn mb-2 p-1">
-                      Conform
-                    </button>{" "}
-                  </div>
-                  <div>
-                    <button
-                      type="reset"
-                      className="listenercancelbtn p-1"
-                      variant="secondary"
-                    >
-                      Cancel
-                    </button>{" "}
-                  </div>
-                </form>
-              </div>
-            </div>
+              <div>
+                <button type="submit" className="listenerloginbtn mb-2 p-1">Conform</button>{' '}</div>
+              <div>
+                <button type="reset" className="listenercancelbtn p-1" variant="secondary">Cancel</button>{' '}</div>
+            </form>
           </div>
         </div>
       </div>
     </div>
-  );
+  )
 }
 
 export default ForgotPassword;

@@ -6,13 +6,22 @@ import Card from "react-bootstrap/Card";
 
 function CreatorEditEpisode({ url }) {
   const [episodeData, seEpisodedData] = useState({});
-
   const { id } = useParams();
   var episodid = {
     id: id.split(',')[0],
     name: id.split(',')[1]
   }
   console.log(episodid.id, "episoid");
+
+  var podcastInfo = id.split(",");
+
+  const [episode, setEpisode] = useState({
+    episodeTitle: "",
+    episodeCount: "",
+    podcastId: podcastInfo[0],
+    file: "",
+  });
+
 
   useEffect(() => {
     axiosInstance
@@ -30,67 +39,64 @@ function CreatorEditEpisode({ url }) {
 
   const navigate = useNavigate();
   // const { id } = useParams();
-  var podcastInfo = id.split(",");
 
-  const [episode, setEpisode] = useState({
-    episodeTitle: "",
-    episodeCount: "",
-    podcastId: podcastInfo[0],
-    file: "",
-  });
 
   const handleInputChnage = (e) => {
     console.log(e.target.value);
-    setEpisode({
-      ...episode,
-      [e.target.name]:
-        e.target.name === "file" ? e.target.files[0] : e.target.value,
-    });
+    if (e.target.name == "file") {
+      setEpisode({ ...episode, file: e.target.files[0] });
+    } else {
+      setEpisode({ ...episode, [e.target.name]: e.target.value });
+    }
   };
 
 
   const handleDelete = (e) => {
     e.preventDefault();
-   axiosInstance.post(`/deleteepisode/${episodid.id}`)
-   .then((response)=>{
-    console.log(response.data.data, "delete");
-    alert(response.data.msg);
-    navigate(`/creatorepisodes/${episodeData.podcastId}`)
+    axiosInstance.post(`/deleteepisode/${episodid.id}`)
+      .then((response) => {
+        console.log(response.data.data, "delete");
+        alert(response.data.msg);
+        navigate(`/creatorepisodes/${episodeData.podcastId}`)
 
-   })
-   .catch((error) => {
-    console.error("Error submitting data: ", error);
-    alert("Can't delete episode");
-  });
+      })
+      .catch((error) => {
+        console.error("Error submitting data: ", error);
+        alert("Can't delete episode");
+      });
   }
   const handleSubmit = (e) => {
     e.preventDefault();
-    let data = new FormData();
-    for (let key in episode) {
-      if (key = "file") {
-        data.append("file", episode[key]);
-      }
-      data.append(key, episode[key]);
+    // let data = new FormData();
+    // for (let key in episode) {
+    //   if (key = "file") {
+    //     data.append("file", episode[key]);
+    //   }
+    //   data.append(key, episode[key]);
 
-    }
-    console.log(episode);
-    data.append("creatorname", localStorage.getItem("creatorname"));
-    data.append("creatorId", localStorage.getItem("creatorid"));
+    // }
+    // console.log(episode);
+    // data.append("creatorname", localStorage.getItem("creatorname"));
+    // data.append("creatorId", localStorage.getItem("creatorid"));
 
     axiosInstance
-    .post(`/editepisode/${episodid.id}`, data) // Corrected the endpoint URL and added data
-    .then((response) => {
-      console.log(response.data.data, "y");
+      .post(`/editepisode/${episodid.id}`, episode, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      }) // Corrected the endpoint URL and added data
+      .then((response) => {
+        console.log(response.data.data, "y");
 
-      alert(response.data.msg);
-      // navigate("/creatorprofile");
-    })
-    .catch((error) => {
-      console.error("Error submitting data: ", error);
-      alert("Can't update episode");
-    });
-};
- 
+        alert(response.data.msg);
+        navigate("/creatorprofile");
+      })
+      .catch((error) => {
+        console.error("Error submitting data: ", error);
+        alert("Can't update episode");
+      });
+  };
+
   useEffect(() => {
     if (localStorage.getItem("creatorid") == null) {
       navigate("/");
@@ -172,7 +178,7 @@ function CreatorEditEpisode({ url }) {
             className="btn btn-secondary ms-3 px-5 mt-5"
             onClick={handleDelete}
           >
-            Cancel
+            Delete Episode
           </button>
         </div>
       </div>
