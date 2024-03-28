@@ -90,7 +90,8 @@ function App() {
         <Route path="/creatorepisodes/:id" element={[<CreatorNavbar url={url} />, <CreatorEpisodes url={url} />, <Footer />]} />
         <Route path="/creatoreditepisode/:id" element={[<CreatorNavbar url={url} />, <CreatorEditEpisode url={url} />, <Footer />]} />
         <Route path="/subscription" element={[<CreatorNavbar url={url} />, <Subscriptions url={url} />, <Footer />]} />
-        <Route path="/listenerviewepisode/:id" element={[<ListenerNav url={url} />, <ListenerViewEpisode />, <Footer />]} />
+        <Route path="/listenerviewepisode/:id" element={[<ListenerNav url={url} />, <ListenerViewEpisode role={'listenerviewepisode'}/>, <Footer />]} />
+        <Route path="/episodedetailpage/:id" element={[<ListenerNav url={url} />, <ListenerViewEpisode role={'detailPage'}/>, <Footer />]} />
         <Route path="/adminviewepisode/:id" element={<AdminViewEpisode url={url} />} />
       </Routes>
     </BrowserRouter>

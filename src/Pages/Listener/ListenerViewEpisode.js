@@ -12,12 +12,14 @@ import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 
 
-function ListenerViewEpisode() {
+function ListenerViewEpisode(props) {
+  const {role} = props
   const url = 'http://localhost:4000/'
   const navigate = useNavigate();
   const [podcast, setPodcast] = useState([]);
   // const [podcastId, setPodcastId] = useState([]);
   const [episodes, setEpisodes] = useState([]);
+  const [review, setReview] = useState([]);
   let { id } = useParams();
 
   useEffect(() => {
@@ -28,10 +30,10 @@ function ListenerViewEpisode() {
       })
       .then((response) => {
         setPodcast(response.data.data);
-        console.log(response.data.data);
+        // console.log(response.data.data);
       })
       .catch((error) => {
-        console.log("Error submitting data: ", error);
+        // console.log("Error submitting data: ", error);
       });
 
     axiosInstance
@@ -39,8 +41,20 @@ function ListenerViewEpisode() {
         id: id.split(",")[0],
       })
       .then((response) => {
-        console.log("episode", response.data.data);
+        // console.log("episode", response.data.data);
         setEpisodes(response.data.data);
+      })
+      .catch((error) => {
+        // console.log("Error submitting data: ", error);
+      });
+
+        axiosInstance
+      .post("/getreviewodpodcast", {
+        id: id.split(",")[0],
+      })
+      .then((response) => {
+        console.log("review", response);
+        setReview(response.data.data);
       })
       .catch((error) => {
         console.log("Error submitting data: ", error);
@@ -58,6 +72,9 @@ function ListenerViewEpisode() {
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const subscribe = () => {
+    navigate(`/paymentform/${id.split(",")[0]}`)
+  }
 
   const [feedback, setFeedback] = useState("")
 
@@ -65,13 +82,13 @@ function ListenerViewEpisode() {
 
     setFeedback(e.target.value)
   }
-  const submitfeedback = (creatorid) => {
+  const submitfeedback = (podcastid) => {
 
     const listenerid = localStorage.getItem("listenerid")
     const listenername = localStorage.getItem("listenername")
-    console.log(feedback, creatorid, listenerid, listenername);
+    console.log(feedback, podcastid, listenerid, listenername);
     // listenerreview
-    const data = { feedback, creatorid, listenerid, listenername }
+    const data = { feedback, podcastid, listenerid, listenername }
     console.log(data);
     axiosInstance
       .post("/listenerreview", data)
@@ -132,9 +149,12 @@ function ListenerViewEpisode() {
                   <button className="episodebtn"><Link className="text-light" to="/listenersubscription">Go to Podcast List
                   </Link>
                   </button>
-                  <button onClick={handleShow} className="episodebtn"><Link className="text-light">Add Review
+                  {role != "detailPage" ? <button onClick={handleShow} className="episodebtn"><Link className="text-light">Add Review
                   </Link>
-                  </button>
+                  </button> : ""}
+                  
+                  {role == "detailPage" ? (<button onClick={subscribe} className="episodebtn">subscribe</button>):''}
+
                 </div>
               </div>
 
@@ -192,8 +212,8 @@ function ListenerViewEpisode() {
                     <div className="col-3">
                       <p>Episode {item.episodecount}</p>
                     </div>
-
                     <div className="col-6">
+                    {role != "detailPage" ? (
                       <audio controls style={{ width: "150%" }}>
                         <source
                           src={item.audio ? url + item.audio.filename : ""}
@@ -201,6 +221,7 @@ function ListenerViewEpisode() {
                         />
                         Your browser does not support the audio element.
                       </audio>
+                    ) : <p>Audio Disabled! please subscribe to play audio</p>}
                     </div>
                   </div>
                 </Card>
@@ -211,6 +232,12 @@ function ListenerViewEpisode() {
         </div>
 
       </div>
+
+      {review.length > 0 ?
+        review.map((item) => (<div>  
+          {item.listenername + "------" + item.feedback} 
+          </div>))
+        : '' }
     </div>)
 
 }

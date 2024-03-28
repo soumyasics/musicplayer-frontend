@@ -34,6 +34,10 @@ import { IoMdHeart } from "react-icons/io";function CreatorPodcastList({ data })
   const gotoPayment=(id)=>{
     navigate(`/paymentform/${id}`)
   }
+  const gotoDetailsPage=(id)=>{
+    navigate(`/episodedetailpage/${id}`)
+  }
+  
   const addToWishlist=(id)=>{
     axiosInstance
     .post('/addToWishlist', {
@@ -76,6 +80,7 @@ import { IoMdHeart } from "react-icons/io";function CreatorPodcastList({ data })
                     <h6 class="card-text" style={{height:"100px"}}>{a.description}</h6>
                     <h6 class="card-text">{a.price}</h6>
                     {data.role === 'creator' ? '' : <button className="episodebtn" onClick={()=>gotoPayment(a._id)} >Subscribe</button>}
+                    {data.role === 'creator' ? '' : <button className="episodebtn" onClick={()=>gotoDetailsPage(a._id)} >View Details</button>}
                     {data.role === 'creator'?<div className="text-center m-3"><button classname="episodebtn" onClick={()=>gotoEpisode(a._id + ',' + a.podcastname)} className="episodebtn">Go to Episode
                       <FaPlus  />
                     </button></div>:""}
