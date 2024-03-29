@@ -85,7 +85,7 @@ function ListenerSubscription({ data }) {
               })
             ) : (
               <div className="no_data">
-                <h1>No subscription found</h1>
+                <h4 className='text-success text-center'>No subscriptions found</h4>
               </div>
             )}
           </div>

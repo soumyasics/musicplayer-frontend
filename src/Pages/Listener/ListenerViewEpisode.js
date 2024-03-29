@@ -6,6 +6,7 @@ import { useParams, Link } from "react-router-dom";
 import { CiCirclePlus } from "react-icons/ci";
 import AddReview from "./AddReview";
 
+import { IoMdStar } from "react-icons/io";
 
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
@@ -13,7 +14,7 @@ import Modal from 'react-bootstrap/Modal';
 
 
 function ListenerViewEpisode(props) {
-  const {role} = props
+  const { role } = props
   const url = 'http://localhost:4000/'
   const navigate = useNavigate();
   const [podcast, setPodcast] = useState([]);
@@ -23,50 +24,57 @@ function ListenerViewEpisode(props) {
   let { id } = useParams();
 
   useEffect(() => {
-    console.log(id);
-    axiosInstance
-      .post("/getPodcastByPodcastId", {
-        id: id.split(",")[0],
-      })
-      .then((response) => {
-        setPodcast(response.data.data);
-        // console.log(response.data.data);
-      })
-      .catch((error) => {
-        // console.log("Error submitting data: ", error);
-      });
+    getpodcastById()
+    EpisodesById()
+    ViewpodcastByID()
 
-    axiosInstance
-      .post("/getEpisodedOfPodcast", {
-        id: id.split(",")[0],
-      })
-      .then((response) => {
-        // console.log("episode", response.data.data);
-        setEpisodes(response.data.data);
-      })
-      .catch((error) => {
-        // console.log("Error submitting data: ", error);
-      });
-
-        axiosInstance
-      .post("/getreviewodpodcast", {
-        id: id.split(",")[0],
-      })
-      .then((response) => {
-        console.log("review", response);
-        setReview(response.data.data);
-      })
-      .catch((error) => {
-        console.log("Error submitting data: ", error);
-      });
+    
   }, []);
 
+const getpodcastById=()=>{
+  axiosInstance
+  .post("/getPodcastByPodcastId", {
+    id: id.split(",")[0],
+  })
+  .then((response) => {
+    setPodcast(response.data.data);
+    console.log(response.data.data);
+  })
+  .catch((error) => {
+    // console.log("Error submitting data: ", error);
+  });
+}
   // const AddReview = (id) => {
   //   navigate("/addreview/" + id)
   // }
 
+const EpisodesById=()=>{
+  axiosInstance
+  .post("/getEpisodedOfPodcast", {
+    id: id.split(",")[0],
+  })
+  .then((response) => {
+    // console.log("episode", response.data.data);
+    setEpisodes(response.data.data);
+  })
+  .catch((error) => {
+    // console.log("Error submitting data: ", error);
+  });
+}
+const ViewpodcastByID=()=>{
+  axiosInstance
+  .post("/getreviewodpodcast", {
+    id: id.split(",")[0],
+  })
+  .then((response) => {
+    console.log("review", response);
+    setReview(response.data.data);
+  })
+  .catch((error) => {
+    console.log("Error submitting data: ", error);
+  });
 
-
+}
 
   const [show, setShow] = useState(false);
 
@@ -82,19 +90,22 @@ function ListenerViewEpisode(props) {
 
     setFeedback(e.target.value)
   }
-  const submitfeedback = (podcastid) => {
+
+  const submitfeedback = (podcastid,creatorid,podcastname) => {
 
     const listenerid = localStorage.getItem("listenerid")
     const listenername = localStorage.getItem("listenername")
-    console.log(feedback, podcastid, listenerid, listenername);
+    console.log(feedback, podcastid, listenerid, listenername,creatorid,podcastname);
     // listenerreview
-    const data = { feedback, podcastid, listenerid, listenername }
-    console.log(data);
+    const data = { feedback, podcastid, listenerid, listenername ,creatorid,podcastname}
+    console.log(data,"data");
     axiosInstance
       .post("/listenerreview", data)
       .then((response) => {
         console.log(response, "y");
-        alert(response.data.msg);
+        document.getElementById("getresult").innerHTML=(response.data.msg);
+        ViewpodcastByID()
+        handleClose()
         // navigate('/creatorprofile')
       })
       .catch((error) => {
@@ -146,16 +157,30 @@ function ListenerViewEpisode(props) {
                 <div className="">
                   <h6 className="card-text col">{item.creatorname}</h6>
                   <h6>Discription {item.description}</h6>
-                  <button className="episodebtn"><Link className="text-light" to="/listenersubscription">Go to Podcast List
-                  </Link>
-                  </button>
                   {role != "detailPage" ? <button onClick={handleShow} className="episodebtn"><Link className="text-light">Add Review
                   </Link>
                   </button> : ""}
-                  
-                  {role == "detailPage" ? (<button onClick={subscribe} className="episodebtn">subscribe</button>):''}
+
+                  {role == "detailPage" ? (<button onClick={subscribe} className="episodebtn">subscribe</button>) : ''}
 
                 </div>
+
+              </div>
+              <div className="col-12 mt-5">
+                <h6>Here's what our happy customers are saying...</h6>
+                {
+                  review.length > 0 ?
+                    review.map((item) => (
+
+                      <ul class="list-group list-group-flush">
+                        <li class="list-group-item"> <span class="badge text-bg-success rounded-pill"><IoMdStar /></span><h6>{item.listenername}</h6>
+                          <p>{item.feedback}</p>
+                          <hr></hr>
+                        </li>
+                      </ul>
+                    ))
+                    : <div className="fs-5 text-center text-success">feedback empty </div>
+                }
               </div>
 
 
@@ -174,11 +199,12 @@ function ListenerViewEpisode(props) {
                     </Form.Group>
                   </Form>
                 </Modal.Body>
+                <div id="getresult" className="text-success text-center"></div>
                 <Modal.Footer>
                   <Button variant="secondary" onClick={handleClose}>
                     Close
                   </Button>
-                  <Button variant="primary" onClick={() => submitfeedback(item._id)}>
+                  <Button variant="primary" onClick={() => submitfeedback(item._id,item.creatorId,item.podcastname)}>
                     Submit
                   </Button>
                 </Modal.Footer>
@@ -213,33 +239,31 @@ function ListenerViewEpisode(props) {
                       <p>Episode {item.episodecount}</p>
                     </div>
                     <div className="col-6">
-                    {role != "detailPage" ? (
-                      <audio controls style={{ width: "150%" }}>
-                        <source
-                          src={item.audio ? url + item.audio.filename : ""}
-                          type="audio/mpeg"
-                        />
-                        Your browser does not support the audio element.
-                      </audio>
-                    ) : <p>Audio Disabled! please subscribe to play audio</p>}
+                      {role != "detailPage" ? (
+                        <audio controls style={{ width: "150%" }}>
+                          <source
+                            src={item.audio ? url + item.audio.filename : ""}
+                            type="audio/mpeg"
+                          />
+                          Your browser does not support the audio element.
+                        </audio>
+                      ) : <p>Audio Disabled! please subscribe to play audio</p>}
                     </div>
                   </div>
                 </Card>
               ))
             ) : (
-              <h4>currently no episode available</h4>)}
+              <h6 className="text-center text-success">currently no episode available</h6>)}
           </div>
         </div>
 
       </div>
 
-      {review.length > 0 ?
-        review.map((item) => (<div>  
-          {item.listenername + "------" + item.feedback} 
-          </div>))
-        : '' }
+
+
     </div>)
 
 }
 
 export default ListenerViewEpisode;
+

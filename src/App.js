@@ -38,6 +38,7 @@ import CreatorEditEpisode from "./Components/Creator/CreatorEditEpisode";
 import Subscriptions from "./Components/Listener/Subscriptions";
 import ListenerViewEpisode from "./Pages/Listener/ListenerViewEpisode";
 import AdminViewEpisode from "./Pages/Admin/AdminViewEpisode";
+import ViewReview from "./Pages/Creator/ViewReview";
 
 function App() {
 
@@ -93,6 +94,7 @@ function App() {
         <Route path="/listenerviewepisode/:id" element={[<ListenerNav url={url} />, <ListenerViewEpisode role={'listenerviewepisode'}/>, <Footer />]} />
         <Route path="/episodedetailpage/:id" element={[<ListenerNav url={url} />, <ListenerViewEpisode role={'detailPage'}/>, <Footer />]} />
         <Route path="/adminviewepisode/:id" element={<AdminViewEpisode url={url} />} />
+        <Route path="/viewreview/:id" element={[<CreatorNavbar url={url} />,<ViewReview url={url} />, <Footer />]} />
       </Routes>
     </BrowserRouter>
   );

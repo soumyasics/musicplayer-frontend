@@ -5,9 +5,11 @@ import logo from "../../Assest/Logo (1).png";
 import "../Listener/listenernav.css";
 import Nav from "react-bootstrap/Nav";
 import axiosInstance from "../../Baseurl";
+import { useNavigate } from "react-router-dom";
 
 function CreatorNavbar({url}) {
   const [creatornav, setCreatornav] = useState("");
+
   useEffect(() => {
     axiosInstance
       .post("/viewCreatorById", { id: localStorage.getItem("creatorid") })
@@ -23,6 +25,13 @@ function CreatorNavbar({url}) {
         }
       });
   },[]);
+
+  const navigate=useNavigate()
+
+  const Viewreview=()=>{
+    const creatorid=localStorage.getItem("creatorid")
+    navigate("/viewreview/"+creatorid)
+  }
 
   return (
     <div>
@@ -46,6 +55,13 @@ function CreatorNavbar({url}) {
               id="landingpage_links_hover"
             >
               Subscribers
+            </Nav.Link>
+            <Nav.Link
+              className="landingpage_links me-5"
+              id="landingpage_links_hover"
+              onClick={Viewreview}
+            >
+              Reviews
             </Nav.Link>
             <Nav.Link class="nav-link" href="/creatorprofile">
               <div className="circular-img">

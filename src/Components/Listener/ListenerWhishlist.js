@@ -45,19 +45,19 @@ function ListenerWhishlist() {
                   <div className="card col-3" id="podcastlist_card">
                     <div class="podcastlist_card_img">
                       <img
-                        src={url + a.podcastId.coverimage.filename}
+                        src={a.podcastId ? url + a.podcastId.coverimage.filename:""}
                         class="card-img-top"
                         id="adminclub"
                         alt="..."
                       />
                     </div>
                     <div class="podcastlist_card_content">
-                      <h4 class="card-title mt-3 mb-2t">{a.podcastId.podcastname}</h4>
-                      <h6 class="card-text col">{a.podcastId.creatorname}</h6>
-                      <h6 class="card-text" style={{height:"100px"}}>{a.podcastId.description}</h6>
+                      <h4 class="card-title mt-3 mb-2t">{a.podcastId ?a.podcastId.podcastname:""}</h4>
+                      <h6 class="card-text col">{a.podcastId ?a.podcastId.creatorname:""}</h6>
+                      <h6 class="card-text" style={{height:"100px"}}>{a.podcastId ?a.podcastId.description:""}</h6>
                       <button className='episodebtn' onClick={()=>gotoPayment(a.podcastId._id)} >Subscribe</button>
                       <audio controls className="w-100">
-                        <source src={a.podcastId.audio ? url + a.podcastId.audio.filename : ''} type="audio/mpeg" />
+                        <source src={a.podcastId ?a.podcastId.audio ? url + a.podcastId.audio.filename : '':""} type="audio/mpeg" />
                         Your browser does not support the audio element.
                       </audio>
                     </div>
@@ -66,7 +66,7 @@ function ListenerWhishlist() {
               })
             ) : (
               <div className="no_data">
-                <h1>No wishlist found</h1>
+                <h4 className='text-success text-center'>No Wishlist found</h4>
               </div>
             )}
           </div>

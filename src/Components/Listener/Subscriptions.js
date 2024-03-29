@@ -37,7 +37,7 @@ function Subscriptions({ url }) {
                             <th>Price</th>
                         </tr>
                     </thead>
-                    {subscriptions.length ? (subscriptions.map((item) => (
+                    {subscriptions && subscriptions.length ? (subscriptions.map((item) => (
 
                         <tbody>
                             <tr>
@@ -56,7 +56,7 @@ function Subscriptions({ url }) {
                             </tr>
                         </tbody>
 
-                    ))):<h4>no subscribers present</h4>}
+                    ))):<h4 className='text-success text-center mt-5'>no subscribers present</h4>}
 
                 </Table>
             </div>

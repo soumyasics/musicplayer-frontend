@@ -3,7 +3,9 @@ import axiosInstance from "../../Baseurl";
 import { FaPlus } from "react-icons/fa6";
 import './creatorpodcastlist.css';
 import { useNavigate } from "react-router-dom";
-import { IoMdHeart } from "react-icons/io";function CreatorPodcastList({ data }) {
+import { IoMdHeart } from "react-icons/io";
+
+function CreatorPodcastList({ data }) {
   const [isPlaying, setIsPlaying] = useState(false);
 
   const togglePlay = () => {
@@ -27,7 +29,7 @@ import { IoMdHeart } from "react-icons/io";function CreatorPodcastList({ data })
       });
     console.log(creatorpodcast, "ll");
   }, []);
-
+ console.log(creatorpodcast,"podcast");
   const gotoEpisode=(id)=>{
     navigate(`/creatorepisodes/${id}`)
   }
@@ -60,11 +62,10 @@ import { IoMdHeart } from "react-icons/io";function CreatorPodcastList({ data })
   return (
     <div className="podcast_list_main">
       <div class="container ">
-      <h5 className="text-dark mt- pt-5">My podcasts</h5>
+      <h5 className="text-dark mt- pt-5">podcasts</h5>
         <div class="row row-cols-1 row-cols-md-4 g-4 mt-3">
-          {creatorpodcast.length ? (
-            creatorpodcast.map((a) => {
-              return (
+          {creatorpodcast.length>0 ? (
+            creatorpodcast.map((a) => (
                 <div  className="card col-3" id="podcastlist_card">
                   <div class="podcastlist_card_img">
                     <img
@@ -95,11 +96,10 @@ import { IoMdHeart } from "react-icons/io";function CreatorPodcastList({ data })
                   </div>
                   
                 </div>
-              );
-            })
-          ) : (
-            <div className="no_data">
-              <h1>No podcast found</h1>
+              )
+          )) : (
+            <div className="text-sucess">
+              <h4 className="text-success text-center">No podcast found</h4>
             </div>
           )}
         </div>
