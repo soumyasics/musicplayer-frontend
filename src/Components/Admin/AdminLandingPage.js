@@ -19,7 +19,7 @@ function AdminLandingPage() {
               creators, and overseeing user experiences with seamless ease.
             </div>
             <div>
-              <button className="Adminloginbtn"><Link to="/adminlogin" className="text-light">Log in</Link></button>
+              <button className="Adminloginbtn"><Link to="/adminlogin" className="text-light text-decoration-none">Log in</Link></button>
             </div>
           </div>
           <div className="col-5"></div>

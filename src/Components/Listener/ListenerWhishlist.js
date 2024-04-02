@@ -4,10 +4,10 @@ import { useNavigate } from "react-router-dom";
 import Table from 'react-bootstrap/Table';
 import '../Creator/creatorpodcastlist.css';
 
-function ListenerWhishlist() {
+function ListenerWhishlist({url}) {
   const navigate = useNavigate();
   const [wishlist, setWishlist] = useState([]);
-  const url='http://localhost:4000/'
+  // const url='http://localhost:4000/'
 
     useEffect(() => {
         axiosInstance

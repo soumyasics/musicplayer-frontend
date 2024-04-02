@@ -85,7 +85,7 @@ function CreatorProfile({ url }) {
             <button onClick={handlelogout} className=" RegisterButton ms-2 p-2">
               Logout
             </button>
-            <label onClick={uploadbtn} className="ms-2 p-2">
+            <label onClick={uploadbtn} className="btn btn-outline-success ms-2 p-2">
               Upload Podcast <FaPlus />
             </label>
           </div>

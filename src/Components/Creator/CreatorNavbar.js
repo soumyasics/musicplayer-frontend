@@ -5,7 +5,7 @@ import logo from "../../Assest/Logo (1).png";
 import "../Listener/listenernav.css";
 import Nav from "react-bootstrap/Nav";
 import axiosInstance from "../../Baseurl";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,Link } from "react-router-dom";
 
 function CreatorNavbar({url}) {
   const [creatornav, setCreatornav] = useState("");
@@ -26,44 +26,45 @@ function CreatorNavbar({url}) {
       });
   },[]);
 
-  const navigate=useNavigate()
+  // const navigate=useNavigate()
+  const creatorid=localStorage.getItem("creatorid")
 
-  const Viewreview=()=>{
-    const creatorid=localStorage.getItem("creatorid")
-    navigate("/viewreview/"+creatorid)
-  }
+  // const Viewreview=()=>{
+  //   navigate("/viewreview/"+creatorid)
+  // }
+
 
   return (
     <div>
       <Navbar>
         <Container>
-          <Navbar.Brand href="#home">
+          <Link to="/creatorhome">
             <img className="footerimg" src={logo} alt="img"></img>
-          </Navbar.Brand>
+          </Link>
           <Navbar.Toggle />
           <Navbar.Collapse className="justify-content-end">
-            <Nav.Link
-              href="/creatorhome"
-              className="landingpage_links me-5"
+            <Link
+              to="/creatorhome"
+              className="landingpage_links text-decoration-none me-5"
               id="landingpage_links_hover"
             >
               Home
-            </Nav.Link>
-            <Nav.Link
-              href="/subscription"
-              className="landingpage_links me-5"
+            </Link>
+            <Link
+              to={`/subscription`}
+              className="landingpage_links text-decoration-none me-5"
               id="landingpage_links_hover"
             >
               Subscribers
-            </Nav.Link>
-            <Nav.Link
-              className="landingpage_links me-5"
+            </Link>
+            <Link
+              className="landingpage_links text-decoration-none me-5"
               id="landingpage_links_hover"
-              onClick={Viewreview}
+              to={`/viewreview/${creatorid}`}
             >
               Reviews
-            </Nav.Link>
-            <Nav.Link class="nav-link" href="/creatorprofile">
+            </Link>
+            <Link class="nav-link text-decoration-none" to="/creatorprofile">
               <div className="circular-img">
                 <img
                   src={url+creatornav}
@@ -71,7 +72,7 @@ function CreatorNavbar({url}) {
                   className="profileimg"
                 ></img>
               </div>
-            </Nav.Link>
+            </Link>
           </Navbar.Collapse>
         </Container>
       </Navbar>

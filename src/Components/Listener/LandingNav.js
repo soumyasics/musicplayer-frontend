@@ -4,6 +4,7 @@ import Navbar from "react-bootstrap/Navbar";
 import logo from "../../Assest/Logo (1).png";
 import "./landingnav.css";
 import Nav from "react-bootstrap/Nav";
+import { Link } from "react-router-dom";
 
 function LandingNav({ props }) {
   // const [beforelogin,setBeforelogin]=useState()
@@ -31,16 +32,16 @@ function LandingNav({ props }) {
         { content: "Home", path: "/" },
         {
           content: "Login",
-          path: "./ListenerLogin",
+          path: "/ListenerLogin",
         },
-        { content: "register", path: "./ListenerRegister" },
+        { content: "Register", path: "/ListenerRegister" },
       ];
       break;
     case "creatorlanding":
       data = [
         { content: "Home", path: "/" },
-        {content: "Login", path: "./creatorlogin"},
-        { content: "register", path: "./creatorregister" },
+        { content: "Login", path: "/creatorlogin" },
+        { content: "Register", path: "/creatorregister" },
       ];
       break;
     default:
@@ -51,20 +52,20 @@ function LandingNav({ props }) {
     <div>
       <Navbar>
         <Container>
-          <Navbar.Brand href="#home">
+          <Link to="/">
             <img className="footerimg" src={logo} alt="img"></img>
-          </Navbar.Brand>
+          </Link>
           <Navbar.Toggle />
           <Navbar.Collapse className="justify-content-end">
             {data.map((item, index) => (
-              <Nav.Link
+              <Link
                 key={index}
-                href={item.path}
-                className="landingpage_links me-5"
+                to={item.path}
+                className="landingpage_links text-decoration-none me-5"
                 id="landingpage_links_hover"
               >
                 {item.content}
-              </Nav.Link>
+              </Link>
             ))}
           </Navbar.Collapse>
         </Container>

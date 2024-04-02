@@ -27,6 +27,7 @@ function CreatorNavbar({url}) {
         }
       });
   },[]);
+
   return (
     <div>
       <Navbar>
@@ -38,20 +39,20 @@ function CreatorNavbar({url}) {
           <Navbar.Collapse className="justify-content-end">
             <Nav.Link
               href="/creatorhome"
-              className="landingpage_links me-5"
+              className="landingpage_links text-decoration-none me-5"
               id="landingpage_links_hover"
             >
               Home
             </Nav.Link>
             <Nav.Link
               href="/subscription"
-              className="landingpage_links me-5"
+              className="landingpage_links text-decoration-none me-5"
               id="landingpage_links_hover"
             >
               Subscribers
             </Nav.Link>
             <Nav.Link
-              className="landingpage_links me-5"
+              className="landingpage_links text-decoration-none me-5"
               id="landingpage_links_hover"
               onClick={Viewreview}
             >

@@ -39,7 +39,7 @@ function CreatorHome() {
         </p>
         <div className="mt-5">
           <button  className="btn border border-dark rounded-pill px-5 ms-3">
-           <Link to="/subscription" className='text-dark'> Subscribers</Link>
+           <Link to="/subscription" className='text-dark  text-decoration-none'> Subscribers</Link>
           </button>
         </div>
       </div>

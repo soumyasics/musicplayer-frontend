@@ -5,6 +5,7 @@ import logo from "../../Assest/Logo (1).png";
 import "./listenernav.css";
 import Nav from "react-bootstrap/Nav";
 import axiosInstance from "../../Baseurl";
+import { Link } from "react-router-dom";
 
 function ListenerNav({ url }) {
   const [listenernav, setListenernav] = useState("");
@@ -27,33 +28,33 @@ function ListenerNav({ url }) {
     <div>
       <Navbar>
         <Container>
-          <Navbar.Brand href="#home">
+          <Link to="/listenerhome">
             <img className="footerimg" src={logo} alt="img"></img>
-          </Navbar.Brand>
+          </Link>
           <Navbar.Toggle />
           <Navbar.Collapse className="justify-content-end">
-            <Nav.Link
-              href="/listenerhome"
-              className="landingpage_links me-5"
+            <Link
+              to="/listenerhome"
+              className="landingpage_links text-decoration-none me-5"
               id="landingpage_links_hover"
             >
               Home
-            </Nav.Link>
-            <Nav.Link
-              href="/listenersubscription"
-              className="landingpage_links me-5"
+            </Link>
+            <Link
+              to="/listenersubscription"
+              className="landingpage_links text-decoration-none me-5"
               id="landingpage_links_hover"
             >
               Subscription
-            </Nav.Link>
-            <Nav.Link
-              href="/listenerWhishlist"
-              className="landingpage_links me-5"
+            </Link>
+            <Link
+              to="/listenerWhishlist"
+              className="landingpage_links text-decoration-none me-5"
               id="landingpage_links_hover"
             >
               wishlist
-            </Nav.Link>
-            <Nav.Link class="nav-link" href="/listenerProfile">
+            </Link>
+            <Link class="nav-link text-decoration-none" to="/listenerProfile">
               <div className="circular-img">
                 <img
                   src={url + listenernav}
@@ -61,7 +62,7 @@ function ListenerNav({ url }) {
                   className="profileimg"
                 ></img>
               </div>
-            </Nav.Link>
+            </Link>
           </Navbar.Collapse>
         </Container>
       </Navbar>

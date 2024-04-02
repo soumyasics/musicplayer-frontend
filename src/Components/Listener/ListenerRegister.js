@@ -5,7 +5,7 @@ import Col from "react-bootstrap/Col";
 import { Container } from "react-bootstrap";
 import axiosInstance from "../../Baseurl";
 import validator from 'validator' 
-import { useNavigate } from "react-router-dom";
+import { useNavigate ,Link} from "react-router-dom";
 
 function ListenerRegister() {
   const [listenerRegister, setListenerRegister] = useState({
@@ -77,7 +77,7 @@ function ListenerRegister() {
   return (
    
     <div>
-      <form onSubmit={onSubmitData}>
+      <form type="Submit" onSubmit={onSubmitData}>
       <div className="backgroundimg">
         <Container>
           <Row>
@@ -284,8 +284,8 @@ function ListenerRegister() {
             <button type="submit"  className=" RegisterButton ps-5 pe-5 p-2 mt-5 mb-5">
               Register
             </button>
-            <button type="reset" className="cancelbutton ps-5 pe-5 p-2 mt-5 mb-5">
-              Cancel
+            <button type="reset" className="cancelbutton text-decoration-none ps-5 pe-5 p-2 mt-5 mb-5">
+              <Link to='/' className="text-decoration-none text-dark">Cancel</Link>          
             </button>
           </div>
         </Container></div>

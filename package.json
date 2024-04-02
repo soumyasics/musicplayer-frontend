@@ -1,5 +1,6 @@
 {
   "name": "edu-podcasting-frontend",
+  "homepage":"http://hybrid.srishticampus.in/educational_podcasting/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

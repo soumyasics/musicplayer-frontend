@@ -15,7 +15,10 @@ import Modal from 'react-bootstrap/Modal';
 
 function ListenerViewEpisode(props) {
   const { role } = props
-  const url = 'http://localhost:4000/'
+  const {url}=props
+  // console.log(url,"url");
+
+  // const url = 'http://localhost:4000/'
   const navigate = useNavigate();
   const [podcast, setPodcast] = useState([]);
   // const [podcastId, setPodcastId] = useState([]);

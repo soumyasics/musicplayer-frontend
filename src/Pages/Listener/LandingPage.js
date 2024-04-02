@@ -4,8 +4,11 @@ import img from "../../Assest/Group 1.png";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import podcast from "../../Assest/CARD (1).png";
-function LandingPage() {
-  
+import { Link } from "react-router-dom";
+
+
+function LandingPage(props) {
+
   return (
     <div>
       <div className="container">
@@ -28,12 +31,16 @@ function LandingPage() {
               inquisitive minds, and let's redefine learning together. Tune in
               and transform your curiosity into wisdom !"
             </p>
-            <div className="mt-5">
-              <button className="seelatestpodcast ">Latest podcast</button>
-              <button  className="btn border border-dark rounded-pill px-5 ms-3">
-                Subscribe
-              </button>
-            </div>
+            {
+              props.data == 'listenerhome' ?
+
+                <div className="mt-5">
+                  <button className="seelatestpodcast text-decoration-none"><Link className="text-light text-decoration-none" to="/listenersubscription" >Latest podcast</Link></button>
+                  <button className="btn border border-dark rounded-pill px-5 ms-3">
+                    <Link className="text-dark text-decoration-none" to="/listenerWhishlist">Subscribe</Link>
+                  </button>
+                </div> :<div> <h6>welcome to podast world !</h6><button className="seelatestpodcast text-decoration-none"><Link className="text-light text-decoration-none" to="/ListenerLogin" > Get Started</Link></button></div>
+            }
           </div>
           <div className="col-6">
             <img className="landingpage_img" src={img} alt="img" />

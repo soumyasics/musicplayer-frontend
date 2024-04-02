@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import axiosInstance from "../../Baseurl";
 import { toast } from "react-toastify";
 import { BsArrowClockwise } from "react-icons/bs";
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 
 function Paymentform() {
   const [cardholdername, setCardholdername] = useState("");
@@ -16,43 +16,57 @@ function Paymentform() {
 
   const enteredDateObj = new Date(expirationDate);
   const currentDate = new Date();
-  
+
   const { id } = useParams();
   const navigate = useNavigate();
 
-  const handlePayment=async()=>{
-    if(cardholdername.length > 3 && creaditcardnumber.length == 12 &&  enteredDateObj > currentDate && CVV.length == 3){
-        console.log("nbchdbv");
-    
-    try {
-        const result = await axiosInstance.post("/subscribePodcast", {
-            listenerid:localStorage.getItem("listenerid"),
-            podcastid:id,
-            paymentstatus:true
-        });
-        if (result.data.status == 400) {
-          alert('Already subscribed');
-          navigate('/listenersubscription')
-        } else {
-          if (result.data.status == 200) {
-            alert('Payment Sucess');
-            navigate('/listenersubscription')
+  const handlePayment = async () => {
+    if (cardholdername.length > 3) {
+      console.log("nbchdbv");
+      if (creaditcardnumber.length == 12) {
+        if (enteredDateObj > currentDate) {
+          if (CVV.length == 3) {
+            try {
+              const result = await axiosInstance.post("/subscribePodcast", {
+                listenerid: localStorage.getItem("listenerid"),
+                podcastid: id,
+                paymentstatus: true
+              });
+              if (result.data.status == 400) {
+                alert('Already subscribed');
+                navigate('/listenersubscription')
+              } else {
+                if (result.data.status == 200) {
+                  alert('Payment Sucess');
+                  navigate('/listenersubscription')
+                }
+              }
+
+              console.log(result)
+            } catch (err) {
+              console.log("Error:", err);
+              if (err.response && err.response.data && err.response.data.message) {
+                document.getElementById("alertuser").innerHTML =
+                  err.response.data.message;
+              } else {
+                document.getElementById("alertuser").innerHTML =
+                  "An error occurred. Please try again.";
+              }
+            }
+          } else {
+            alert("must have 3 numbers")
           }
-      }
-        
-        console.log(result)
-      } catch (err) {
-        console.log("Error:", err);
-        if (err.response && err.response.data && err.response.data.message) {
-          document.getElementById("alertuser").innerHTML =
-            err.response.data.message;
         } else {
-          document.getElementById("alertuser").innerHTML =
-            "An error occurred. Please try again.";
+          alert("please select future date")
         }
-      }} else {
-        alert('invalid payment details');
+
+      } else {
+        alert("card number must have 12 number")
       }
+
+    } else {
+      alert('enter cardholder name');
+    }
 
   }
   return (
@@ -90,21 +104,21 @@ function Paymentform() {
                 >
                   <Form.Control
                     type="month"
-                   
+
                     value={expirationDate}
                     onChange={(e) => setExpirationDate(e.target.value)}
                   />
                 </Form.Group><Form.Group
-                className="mb-3"
-                controlId="exampleForm.ControlInput1"
-              >
-                <Form.Control
-                  type="text"
-                  placeholder="CVV"
-                  value={CVV}
-                  onChange={(e) => setCVV(e.target.value)}
-                />
-              </Form.Group>
+                  className="mb-3"
+                  controlId="exampleForm.ControlInput1"
+                >
+                  <Form.Control
+                    type="text"
+                    placeholder="CVV"
+                    value={CVV}
+                    onChange={(e) => setCVV(e.target.value)}
+                  />
+                </Form.Group>
                 <div id="alertuser"></div>
                 <div>
                   <button type="button" onClick={handlePayment} className="listenerloginbtn mb-2 p-1">
@@ -112,12 +126,12 @@ function Paymentform() {
                   </button>{" "}
                 </div>
                 <div>
-                  <button
-                    type="reset"
+                  <button type="button"
                     className="listenercancelbtn p-1"
                     variant="secondary"
                   >
-                    Cancel
+                    <Link  className="text-dark text-decoration-none" to="/listenerhome">Cancel
+                    </Link>
                   </button>{" "}
                 </div>
               </form>
