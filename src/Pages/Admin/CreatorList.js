@@ -2,10 +2,12 @@ import React, { useEffect, useState } from 'react'
 import AdminSidebar from '../../Components/Admin/AdminSidebar'
 import Table from 'react-bootstrap/Table';
 import axiosInstance from '../../Baseurl';
+import { useNavigate } from 'react-router-dom';
 
 function CreatorList({ url }) {
     const [creatorlist, setCreatorList] = useState([])
-
+ 
+    const navigate=useNavigate()
     useEffect(() => {
         axiosInstance
             .post("/viewCreators")
@@ -19,7 +21,12 @@ function CreatorList({ url }) {
 
 
     }, []);
-
+    useEffect(() => {
+        if (localStorage.getItem("admin") == null) {
+          navigate("/adminlogin");
+        } 
+      }, []);
+    
     return (
         <div className='row adminbg mt-5 pt-5'>
             <div className='col-1 mt-5 py-5 px-4'><AdminSidebar /></div>

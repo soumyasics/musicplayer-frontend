@@ -22,11 +22,16 @@ function PodcastList({ url }) {
 
 
     }, []);
-    const Navigate = useNavigate()
+    const navigate = useNavigate()
     const viewpodcastByAdmin = (podcastid) => {
-        Navigate('/adminviewepisode/' + podcastid)
+        navigate('/adminviewepisode/' + podcastid)
     }
-
+    useEffect(() => {
+        if (localStorage.getItem("admin") == null) {
+          navigate("/adminlogin");
+        } 
+      }, []);
+    
     return (
         <div className='row mt-5 pt-5 adminbg'>
             <div className='col-1 mt-5 py-5 px-4'><AdminSidebar /></div>

@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import axiosInstance from '../../Baseurl';
 import Table from 'react-bootstrap/Table';
+import { useNavigate } from 'react-router-dom';
 
 function Subscriptions({ url }) {
     const [subscriptions, setSubscriptions] = useState([]);
-
+const navigate=useNavigate()
     useEffect(() => {
         axiosInstance
             .post("/getSubscriptions", {
@@ -18,6 +19,14 @@ function Subscriptions({ url }) {
                 console.log("Error submitting data: ", error);
             });
     }, []);
+
+    useEffect(() => {
+        if (localStorage.getItem("listenerid") !== null) {
+          navigate("/listenersubscription");
+        } else {
+          navigate("/");
+        }
+      }, []);
 
     return (
         <div className='container'>

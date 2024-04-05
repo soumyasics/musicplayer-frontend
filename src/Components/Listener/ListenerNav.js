@@ -23,7 +23,7 @@ function ListenerNav({ url }) {
         console.log(listenernav, "mm");
       });
   },[]);
-
+  
   return (
     <div>
       <Navbar>
@@ -39,6 +39,13 @@ function ListenerNav({ url }) {
               id="landingpage_links_hover"
             >
               Home
+            </Link>
+            <Link
+              to="/listenerviewmusic"
+              className="landingpage_links text-decoration-none me-5"
+              id="landingpage_links_hover"
+            >
+              musics
             </Link>
             <Link
               to="/listenersubscription"

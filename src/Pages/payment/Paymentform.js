@@ -69,6 +69,12 @@ function Paymentform() {
     }
 
   }
+  useEffect(() => {
+    if (localStorage.getItem("listenerid") == null) {
+      navigate("/");
+    } 
+  }, []);
+
   return (
     <div>
       <div className="paymentmain">

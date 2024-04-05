@@ -3,6 +3,7 @@ import AdminSidebar from '../../Components/Admin/AdminSidebar'
 import Table from 'react-bootstrap/Table';
 import axiosInstance from '../../Baseurl';
 import '../../Components/Creator/creatorpodcastlist.css'
+import { useNavigate } from 'react-router-dom';
 function SbscriptionList() {
     const [subscriptionList, setsubscriptionList] = useState([])
 
@@ -19,8 +20,14 @@ function SbscriptionList() {
 
 
     }, []);
+    const navigate=useNavigate()
 
-
+    useEffect(() => {
+        if (localStorage.getItem("admin") == null) {
+          navigate("/adminlogin");
+        } 
+      }, []);
+    
   return (
     <div className='row mt-5 pt-5'>
     <div className='col-1 mt-5 py-5 px-4'><AdminSidebar /></div>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axiosInstance from '../../Baseurl';
-import { useParams } from 'react-router-dom';
+import { useParams,useNavigate } from 'react-router-dom';
 import { IoMdStar } from 'react-icons/io';
 
 function ViewReview() {
@@ -20,6 +20,13 @@ function ViewReview() {
         console.log('Error submitting data: ', error);
       });
   }, []);
+  const navigate=useNavigate()
+  useEffect(() => {
+    if (localStorage.getItem("creatorid") == null) {
+      navigate("/");
+    } 
+  }, []);
+
 
   return (
     <div className='container'>

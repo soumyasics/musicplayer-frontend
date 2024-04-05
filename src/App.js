@@ -39,14 +39,16 @@ import Subscriptions from "./Components/Listener/Subscriptions";
 import ListenerViewEpisode from "./Pages/Listener/ListenerViewEpisode";
 import AdminViewEpisode from "./Pages/Admin/AdminViewEpisode";
 import ViewReview from "./Pages/Creator/ViewReview";
+import AddMusics from "./Pages/Admin/AddMusics";
+import Addmusicform from "./Pages/Admin/Addmusicform";
+import ListenerMusics from "./Components/Listener/ListenerMusics";
 
 function App() {
 
-  // const url = 'http://localhost:4008/'
-  const url = 'http://hybrid.srishticampus.in:4008/'
-
+  const url = 'http://localhost:4013/'
+  // const url = 'http://hybrid.srishticampus.in:4013/'
   return (
-    <BrowserRouter basename="/educational_podcasting">
+    <BrowserRouter basename="/music_player">
       <Routes>
 
         <Route path="/landingnav" element={<LandingNav />} />
@@ -62,9 +64,9 @@ function App() {
         <Route path='/listenerregister' element={[<LandingNav props={{ value: "listenerlanding" }} />, <ListenerRegister />, <Footer />]} />
         <Route path='/listeneredit' element={[<ListenerNav url={url} />, <ListenerEdit url={url} />, <Footer />]} />
 
-        <Route path="/listenerhome" element={[<ListenerNav url={url} />, <ListenerHome props={{ role: "listenerhome" }} />, <CreatorPodcastList data={{ url: url, role: 'listener' }} />, <Footer />]} />
+        <Route path="/listenerhome" element={[<ListenerNav url={url} />, <ListenerHome props={{ role: "listenerhome" }} />, <CreatorPodcastList data={{ url: url, role: 'listener' }} />, <ListenerMusics url={url} />, <Footer />]} />
         <Route path="/forgotpassword" element={[<LandingNav props={{ value: "listenerlanding" }} />, <ForgotPassword />, <Footer />]} />
-        <Route path='/listenerWhishlist' element={[<ListenerNav url={url} />, <ListenerWhishlist url={url}/>, <Footer />]} />
+        <Route path='/listenerWhishlist' element={[<ListenerNav url={url} />, <ListenerWhishlist url={url} />, <Footer />]} />
         <Route path='/listenerProfile' element={[<ListenerNav url={url} />, <ListenerProfile url={url} />, <Footer />]} />
         <Route path='/listenersubscription' element={[<ListenerNav url={url} />, <ListenerSubscription data={{ url: url, role: 'listener' }} />, <Footer />]} />
 
@@ -92,10 +94,16 @@ function App() {
         <Route path="/creatorepisodes/:id" element={[<CreatorNavbar url={url} />, <CreatorEpisodes url={url} />, <Footer />]} />
         <Route path="/creatoreditepisode/:id" element={[<CreatorNavbar url={url} />, <CreatorEditEpisode url={url} />, <Footer />]} />
         <Route path="/subscription" element={[<CreatorNavbar url={url} />, <Subscriptions url={url} />, <Footer />]} />
-        <Route path="/listenerviewepisode/:id" element={[<ListenerNav url={url} />, <ListenerViewEpisode url={url} role={'listenerviewepisode'}/>, <Footer />]} />
-        <Route path="/episodedetailpage/:id" element={[<ListenerNav url={url} />, <ListenerViewEpisode url={url} role={'detailPage'}/>, <Footer />]} />
+        <Route path="/listenerviewepisode/:id" element={[<ListenerNav url={url} />, <ListenerViewEpisode url={url} role={'listenerviewepisode'} />, <Footer />]} />
+        <Route path="/episodedetailpage/:id" element={[<ListenerNav url={url} />, <ListenerViewEpisode url={url} role={'detailPage'} />, <Footer />]} />
         <Route path="/adminviewepisode/:id" element={<AdminViewEpisode url={url} />} />
-        <Route path="/viewreview/:id" element={[<CreatorNavbar url={url} />,<ViewReview url={url} />, <Footer />]} />
+        <Route path="/viewreview/:id" element={[<CreatorNavbar url={url} />, <ViewReview url={url} />, <Footer />]} />
+
+        <Route path="/addmusics" element={[<AddMusics url={url} />, <Footer />]} />
+        <Route path="/addmusicsform" element={[<Addmusicform />, <Footer />]} />
+        <Route path="/listenerviewmusic" element={[<ListenerNav url={url} />, <ListenerMusics url={url} />, <Footer />]} />
+
+
       </Routes>
     </BrowserRouter>
   );

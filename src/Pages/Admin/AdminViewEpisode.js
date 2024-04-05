@@ -39,7 +39,12 @@ function AdminViewEpisode({ url }) {
             });
     }, []);
 
-
+    useEffect(() => {
+        if (localStorage.getItem("admin") == null) {
+          navigate("/adminlogin");
+        } 
+      }, []);
+    
     return (
         <div className="container mt-5">
             <div className="row">

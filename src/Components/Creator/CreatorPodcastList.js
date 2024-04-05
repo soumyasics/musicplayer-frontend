@@ -58,6 +58,9 @@ function CreatorPodcastList({ data }) {
     .catch((error) => {
       console.error("Error submitting data: ", error);
     });  }
+    
+   
+  
 
   return (
     <div className="podcast_list_main">

@@ -115,8 +115,13 @@ const ViewpodcastByID=()=>{
         console.error("Error submitting data: ", error);
       });
   };
+  useEffect(() => {
+    if (localStorage.getItem("listenerid") == null) {
+      navigate("/");
+    } 
+  }, []);
 
-
+  
 
   return (
     <div className="container mt-5">
