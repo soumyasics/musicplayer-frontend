@@ -6,7 +6,7 @@ import "../../Components/Listener/listenernav.css";
 import Nav from "react-bootstrap/Nav";
 import axiosInstance from "../../Baseurl";
 import ViewReview from "./ViewReview";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,Link } from "react-router-dom";
 
 function CreatorNavbar({url}) {
 
@@ -37,29 +37,29 @@ function CreatorNavbar({url}) {
           </Navbar.Brand>
           <Navbar.Toggle />
           <Navbar.Collapse className="justify-content-end">
-            <Nav.Link
-              href="/creatorhome"
+            <Link
+              to="/creatorhome"
               className="landingpage_links text-decoration-none me-5"
               id="landingpage_links_hover"
             >
               Home
-            </Nav.Link>
-            <Nav.Link
-              href="/subscription"
+            </Link>
+            <Link
+              to={`/subscription`}
               className="landingpage_links text-decoration-none me-5"
               id="landingpage_links_hover"
             >
               Subscribers
-            </Nav.Link>
-            <Nav.Link
+            </Link>
+            <Link
               className="landingpage_links text-decoration-none me-5"
               id="landingpage_links_hover"
-              onClick={Viewreview}
+              to={`/viewreview/${creatorid}`}
             >
               Reviews
-            </Nav.Link>
+            </Link>
 
-            <Nav.Link class="nav-link" href="/creatorprofile">
+            <Link class="nav-link" to="/creatorprofile">
               <div className="circular-img">
                 <img
                   src={url+creatornav}
@@ -67,7 +67,7 @@ function CreatorNavbar({url}) {
                   className="profileimg"
                 ></img>
               </div>
-            </Nav.Link>
+            </Link>
           </Navbar.Collapse>
         </Container>
       </Navbar>

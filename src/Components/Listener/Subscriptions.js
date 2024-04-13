@@ -22,7 +22,7 @@ const navigate=useNavigate()
 
     useEffect(() => {
         if (localStorage.getItem("listenerid") !== null) {
-          navigate("/listenersubscription");
+          navigate("/subscription");
         } else {
           navigate("/");
         }
