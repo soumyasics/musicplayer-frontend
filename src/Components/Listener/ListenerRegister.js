@@ -64,7 +64,6 @@ function ListenerRegister() {
       })
       .then((response) => {
         alert(response.data.msg)
-        // window.location.reload();
         navigate("/listenerlogin")
       })
       .catch((error) => {
@@ -215,7 +214,6 @@ function ListenerRegister() {
                   required
                 >
                   <option value="">Select Country</option>
-                  <option>Nationality</option>
                   <option value="Canada">Canada</option>
                   <option value="United Kingdom">United Kingdom</option>
                   <option value="Australia">Australia</option>

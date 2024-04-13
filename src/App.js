@@ -45,8 +45,8 @@ import ListenerMusics from "./Components/Listener/ListenerMusics";
 
 function App() {
 
-  const url = 'http://localhost:4013/'
-  // const url = 'http://hybrid.srishticampus.in:4013/'
+  // const url = 'http://localhost:4013/'
+  const url = 'http://hybrid.srishticampus.in:4013/'
   return (
     <BrowserRouter basename="/music_player">
       <Routes>

@@ -145,8 +145,7 @@ function CreatorEpisodes({ url }) {
                 </Card>
               ))
             ) : (
-              <h4>please add episodes</h4>)}
-              </div>
+              <h4>Please add episodes</h4>)}              </div>
               </div>
 
               </div>

@@ -111,6 +111,7 @@ const creatorname=localStorage.getItem('creatorname')
               name="description"
               class="form-control"
               id="description"
+              maxLength="100"
               rows={4}
               cols={40}
               onChange={creatorPodcastChange}

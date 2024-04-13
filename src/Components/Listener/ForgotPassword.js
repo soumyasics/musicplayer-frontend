@@ -59,8 +59,7 @@ function ForgotPassword() {
 
           if (res.data.status == 200) {
             alert(res.data.msg);
-            // navigate("/sign_in");
-          } else if (res.data.status == 500) {
+            navigate("/listenerlogin");          } else if (res.data.status == 500) {
             alert(res.data.msg);
           }
         })
