@@ -47,7 +47,7 @@ function ViewReview() {
             </ul>
           ))
         ) : (
-          <div className='fs-5 text-center text-success'>Feedback empty</div>
+          <div className='fs-5 text-center text-success'>Feedback Empty</div>
         )}
       </div>
     </div>

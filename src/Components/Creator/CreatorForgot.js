@@ -78,7 +78,7 @@ function CreatorForgot() {
       <div className="row">
         <div className="col-6"></div>
         <div className="col-6">
-          <h6 className="pt-5 mt-5 text-center">Change password</h6>
+          <h6 className="pt-5 mt-5 text-center">Change Password</h6>
           <div className="listenerlogin_form">
             <form type="Submit" onSubmit={submitfn}>
               <Form.Group
@@ -110,7 +110,7 @@ function CreatorForgot() {
               </Form.Group>
 
               <div>
-                <button type="submit" className="listenerloginbtn mb-2 p-1">Conform</button>{' '}</div>
+                <button type="submit" className="listenerloginbtn mb-2 p-1">Confirm</button>{' '}</div>
               <div>
                 <button type="reset" className="listenercancelbtn p-1" variant="secondary">Cancel</button>{' '}</div>
             </form>

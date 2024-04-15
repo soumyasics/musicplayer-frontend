@@ -59,7 +59,8 @@ function ForgotPassword() {
 
           if (res.data.status == 200) {
             alert(res.data.msg);
-            navigate("/listenerlogin");          } else if (res.data.status == 500) {
+            navigate("/listenerlogin");
+          } else if (res.data.status == 500) {
             alert(res.data.msg);
           }
         })
@@ -77,7 +78,7 @@ function ForgotPassword() {
       <div className="row">
         <div className="col-6"></div>
         <div className="col-6">
-          <h6 className="pt-5 mt-5 text-center">Change password</h6>
+          <h6 className="pt-5 mt-5 text-center">Change Password</h6>
           <div className="listenerlogin_form">
             <form type="Submit" onSubmit={submitfn}>
               <Form.Group
@@ -109,7 +110,7 @@ function ForgotPassword() {
               </Form.Group>
 
               <div>
-                <button type="submit" className="listenerloginbtn mb-2 p-1">Conform</button>{' '}</div>
+                <button type="submit" className="listenerloginbtn mb-2 p-1">Confirm</button>{' '}</div>
               <div>
                 <button type="reset" className="listenercancelbtn p-1" variant="secondary">Cancel</button>{' '}</div>
             </form>

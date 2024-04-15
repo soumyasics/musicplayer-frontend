@@ -117,7 +117,7 @@ function CreatorLogin() {
                     onChange={(e) => setPassword(e.target.value)}
                   />
                   <label className="listener_forgot-password" onClick={forgot}>
-                    forgot password ?
+                    Forgot Password ?
                   </label>
                 </Form.Group>
                 <div className="col-6 listenerCaptcha mt-5 mb-3">

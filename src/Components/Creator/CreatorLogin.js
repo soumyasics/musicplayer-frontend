@@ -61,7 +61,7 @@ function CreatorLogin() {
     }
   };
   const forgot = () => {
-    navigate("/creator_forgotpassword");
+    navigate("/creatorforgotpassword");
   };
   const generateCaptcha = () => {
     const chars =

@@ -65,7 +65,7 @@ const navigate=useNavigate()
               )
               )) : (
               <div className="text-sucess">
-                <h4 className="text-success text-center">No music found</h4>
+                <h4 className="text-success text-center">No Music Found</h4>
               </div>
             )}
           </div>

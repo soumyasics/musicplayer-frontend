@@ -26,7 +26,6 @@ import CreatorProfile from "./Components/Creator/CreatorProfile";
 import CreatorUploadPage from "./Components/Creator/CreatorUploadPage";
 import CreatorUploadPoadcastEdit from "./Components/Creator/CreatorUploadPoadcastEdit";
 import CreatorEpisodeAdd from "./Components/Creator/CreatorEpisodeAdd";
-import CreatorSubscription from "./Components/Creator/CreatorSubscription";
 import CreatorPodcastList from "./Components/Creator/CreatorPodcastList";
 import Paymentform from "./Pages/payment/Paymentform";
 import ListenerList from "./Pages/Admin/ListenerList";
@@ -45,8 +44,8 @@ import ListenerMusics from "./Components/Listener/ListenerMusics";
 
 function App() {
 
-  // const url = 'http://localhost:4013/'
-  const url = 'http://hybrid.srishticampus.in:4013/'
+  const url = 'http://localhost:4013/'
+  // const url = 'http://hybrid.srishticampus.in:4013/'
   return (
     <BrowserRouter basename="/music_player">
       <Routes>
@@ -73,7 +72,7 @@ function App() {
         <Route path="/creatorlogin" element={[<LandingNav props={{ value: "creatorlanding" }} />, <CreatorLogin />, <Footer />]} />
         <Route path='/creatorregister' element={[<LandingNav props={{ value: "creatorlanding" }} />, <CreatorRegister />, <Footer />]} />
         <Route path='/creatorhome' element={[<CreatorNavbar url={url} />, <CreatorHome />, <Footer />]} />
-        <Route path='/creatorsubscription' element={[<CreatorNavbar url={url} />, <CreatorSubscription />, <Footer />]} />
+        {/* <Route path='/creatorsubscription' element={[<CreatorNavbar url={url} />, <CreatorSubscription />, <Footer />]} /> */}
         <Route path='/creatorprofile' element={[<CreatorNavbar url={url} />, <CreatorProfile url={url} />, <CreatorPodcastList data={{ url: url, role: 'creator' }} />, <Footer />]} />
         <Route path="/creatorforgotpassword" element={[<LandingNav props={{ value: "creatorlanding" }} />, <CreatorForgot />, <Footer />]} />
 

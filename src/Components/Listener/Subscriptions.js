@@ -41,7 +41,7 @@ const navigate=useNavigate()
                                 Podcast Name
                             </th>
                             <th>Listener</th>
-                            <th>listener Name</th>
+                            <th>Listener Name</th>
                             <th>Email</th>
                             <th>Price</th>
                         </tr>
@@ -65,7 +65,7 @@ const navigate=useNavigate()
                             </tr>
                         </tbody>
 
-                    ))):<h4 className='text-success text-center mt-5'>no subscribers present</h4>}
+                    ))):<h4 className='text-success text-center mt-5'>No subscribers present</h4>}
 
                 </Table>
             </div>

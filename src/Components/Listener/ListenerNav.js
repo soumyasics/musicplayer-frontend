@@ -45,7 +45,7 @@ function ListenerNav({ url }) {
               className="landingpage_links text-decoration-none me-5"
               id="landingpage_links_hover"
             >
-              musics
+              Musics
             </Link>
             <Link
               to="/listenersubscription"
@@ -59,7 +59,7 @@ function ListenerNav({ url }) {
               className="landingpage_links text-decoration-none me-5"
               id="landingpage_links_hover"
             >
-              wishlist
+              Wishlist
             </Link>
             <Link class="nav-link text-decoration-none" to="/listenerProfile">
               <div className="circular-img">

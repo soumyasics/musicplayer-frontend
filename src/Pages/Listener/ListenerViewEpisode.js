@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import axiosInstance from "../../Baseurl";
 import { useParams, Link } from "react-router-dom";
 import { CiCirclePlus } from "react-icons/ci";
-import AddReview from "./AddReview";
 
 import { IoMdStar } from "react-icons/io";
 
@@ -47,9 +46,7 @@ const getpodcastById=()=>{
     // console.log("Error submitting data: ", error);
   });
 }
-  // const AddReview = (id) => {
-  //   navigate("/addreview/" + id)
-  // }
+
 
 const EpisodesById=()=>{
   axiosInstance
@@ -169,7 +166,7 @@ const ViewpodcastByID=()=>{
                   </Link>
                   </button> : ""}
 
-                  {role == "detailPage" ? (<button onClick={subscribe} className="episodebtn">subscribe</button>) : ''}
+                  {role == "detailPage" ? (<button onClick={subscribe} className="episodebtn">Subscribe</button>) : ''}
 
                 </div>
 
@@ -187,7 +184,7 @@ const ViewpodcastByID=()=>{
                         </li>
                       </ul>
                     ))
-                    : <div className="fs-5 text-center text-success">feedback empty </div>
+                    : <div className="fs-5 text-center text-success">Feedback Empty </div>
                 }
               </div>
 
@@ -261,7 +258,7 @@ const ViewpodcastByID=()=>{
                 </Card>
               ))
             ) : (
-              <h6 className="text-center text-success">currently no episode available</h6>)}
+              <h6 className="text-center text-success">Currently No Episode Available</h6>)}
           </div>
         </div>
 

@@ -62,7 +62,7 @@ function AdminDashboard() {
       <img src={topimg} alt="img" className="topimg"></img>
       <div className="row ">
         <div className="col-2"><Sidebar /></div>
-        <div className="col-8 text-center m-5"><h4 className="m-4">podcast statistics</h4>
+        <div className="col-8 text-center m-5"><h4 className="m-4">Podcast Statistics</h4>
           <div className="container">
             <div className="adminbg row">
               <div className="col-4">

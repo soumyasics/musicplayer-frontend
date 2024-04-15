@@ -43,8 +43,8 @@ function PodcastList({ url }) {
                 <Table striped bordered hover>
                     <thead>
                         <tr>
-                            <th>podcast name</th>
-                            <th>creatorname</th>
+                            <th>Podcast name</th>
+                            <th>Canadareatorname</th>
                             <th> Description</th>
                             <th>View Podcast</th>
                             <th> Price</th>

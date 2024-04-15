@@ -68,7 +68,7 @@ function ListenerSubscription({ data }) {
                         <source src={a.podcastid.audio ? data.url + a.podcastid.audio.filename : ''} type="audio/mpeg" />
                         Your browser does not support the audio element.
                       </audio>
-                      {data.role === 'listener' ? <div className='text-center '><button className='episodebtn' onClick={() => { handleViewEpisode(a.podcastid._id + ',' + a.podcastid.podcastname) }} >view episodes <FaEye /></button></div> : <button onClick={() => handleSubscribe(a._id + ',' + a.podcastname)}>Subscribe</button>}
+                      {data.role === 'listener' ? <div className='text-center '><button className='episodebtn' onClick={() => { handleViewEpisode(a.podcastid._id + ',' + a.podcastid.podcastname) }} >View Episodes <FaEye /></button></div> : <button onClick={() => handleSubscribe(a._id + ',' + a.podcastname)}>Subscribe</button>}
                       <ReactStars
                       count={5}
                       onChange={ratingChanged}

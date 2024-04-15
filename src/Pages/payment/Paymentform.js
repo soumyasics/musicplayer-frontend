@@ -128,7 +128,7 @@ function Paymentform() {
                 <div id="alertuser"></div>
                 <div>
                   <button type="button" onClick={handlePayment} className="listenerloginbtn mb-2 p-1">
-                    proceed to payment
+                    Proceed To Payment
                   </button>{" "}
                 </div>
                 <div>

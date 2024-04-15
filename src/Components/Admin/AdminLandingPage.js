@@ -14,7 +14,7 @@ function AdminLandingPage() {
               welcome ,<span> Admin! </span>
             </div>
             <div className="AdminHomebodyparagraph"> 
-              your central hub for steering the vibrant podcasting community!
+              Your central hub for steering the vibrant podcasting community!
               Here, you hold the reins, managing podcasts, connecting with
               creators, and overseeing user experiences with seamless ease.
             </div>

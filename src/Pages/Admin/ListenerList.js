@@ -43,13 +43,13 @@ function ListenerList({ url }) {
                 <Table striped bordered hover>
                     <thead>
                         <tr>
-                            <th>profile</th>
+                            <th>Profile</th>
                             <th> Name</th>
                             <th> Mobile</th>
                             <th>Email ID</th>
                             <th> DOB</th>
                             <th> Gender</th>
-                            <th> country
+                            <th> Country
                             </th> <th> City</th>
 
                         </tr>

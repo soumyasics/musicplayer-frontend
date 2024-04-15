@@ -69,13 +69,12 @@ function ListenerProfile({ url }) {
           <div>{listenerRegister.email}</div>
           <div>About me</div>
           <div>
-            my address : {listenerRegister.street},{listenerRegister.city},
+            My address : {listenerRegister.street},{listenerRegister.city},
             {listenerRegister.pincode},{listenerRegister.country}
           </div>
         </div>
       </div>
       <div className=" mt-5 mb-5">
-        <h5 className="mt-3">Recently Listened</h5>
         <ListenerSubscription data={{url: url, role: 'listener'}}/>
       </div>
     </div>

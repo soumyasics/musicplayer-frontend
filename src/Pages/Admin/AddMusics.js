@@ -62,7 +62,7 @@ function AddMusics({ url }) {
                                 <tr>
                                     <th>Music Title</th>
                                     <th>Director Name</th>
-                                    <th> film/album</th>
+                                    <th> Film/album</th>
                                     <th> Songs</th>
                                     <th> Action</th>
                                 </tr>
