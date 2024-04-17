@@ -32,9 +32,9 @@ function LandingNav({ props }) {
         { content: "Home", path: "/" },
         {
           content: "Login",
-          path: "/ListenerLogin",
+          path: "/listenerlogin",
         },
-        { content: "Register", path: "/ListenerRegister" },
+        { content: "Register", path: "/listenerregister" },
       ];
       break;
     case "creatorlanding":
